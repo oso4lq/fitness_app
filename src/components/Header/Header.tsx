@@ -23,8 +23,8 @@ export default function Header() {
                                 </g>
                             </g>
                             <defs>
-                                <filter id="filter0_f_38_1239" x="-1.46075" y="-1.46014" width="20.9825" height="22.9216" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                <filter id="filter0_f_38_1239" x="-1.46075" y="-1.46014" width="20.9825" height="22.9216" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                                     <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                                     <feGaussianBlur stdDeviation="0.730621" result="effect1_foregroundBlur_38_1239" />
                                 </filter>
@@ -54,11 +54,11 @@ export default function Header() {
                 <button className={styles.funcs__btn}>Войти</button>
                 <div className={styles.funcs__user}>
                     <svg className={styles.funcs__user_logo} width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M45.8334 25.0001C45.8334 36.506 36.506 45.8334 25.0001 45.8334C13.4941 45.8334 4.16675 36.506 4.16675 25.0001C4.16675 13.4941 13.4941 4.16675 25.0001 4.16675C36.506 4.16675 45.8334 13.4941 45.8334 25.0001ZM37.5001 32.4406C37.5001 35.8923 31.9036 39.5834 25.0001 39.5834C18.0965 39.5834 12.5001 35.8923 12.5001 32.4406C12.5001 28.9888 18.0965 27.0834 25.0001 27.0834C31.9036 27.0834 37.5001 28.9888 37.5001 32.4406ZM25.0001 22.9167C28.4519 22.9167 31.2501 20.1185 31.2501 16.6667C31.2501 13.215 28.4519 10.4167 25.0001 10.4167C21.5483 10.4167 18.7501 13.215 18.7501 16.6667C18.7501 20.1185 21.5483 22.9167 25.0001 22.9167Z" fill="#D9D9D9" />
+                        <path fillRule="evenodd" clipRule="evenodd" d="M45.8334 25.0001C45.8334 36.506 36.506 45.8334 25.0001 45.8334C13.4941 45.8334 4.16675 36.506 4.16675 25.0001C4.16675 13.4941 13.4941 4.16675 25.0001 4.16675C36.506 4.16675 45.8334 13.4941 45.8334 25.0001ZM37.5001 32.4406C37.5001 35.8923 31.9036 39.5834 25.0001 39.5834C18.0965 39.5834 12.5001 35.8923 12.5001 32.4406C12.5001 28.9888 18.0965 27.0834 25.0001 27.0834C31.9036 27.0834 37.5001 28.9888 37.5001 32.4406ZM25.0001 22.9167C28.4519 22.9167 31.2501 20.1185 31.2501 16.6667C31.2501 13.215 28.4519 10.4167 25.0001 10.4167C21.5483 10.4167 18.7501 13.215 18.7501 16.6667C18.7501 20.1185 21.5483 22.9167 25.0001 22.9167Z" fill="#D9D9D9" />
                     </svg>
                     <p>Osetr</p>
                     <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.3553 1.03308L6.67773 6.7107L1.00012 1.03308" stroke="black" stroke-width="2" />
+                        <path d="M12.3553 1.03308L6.67773 6.7107L1.00012 1.03308" stroke="black" strokeWidth="2" />
                     </svg>
                 </div>
             </div>
