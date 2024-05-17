@@ -7,7 +7,7 @@ export default function CourseLayout({
 }>) {
     return (
         <div className={styles.wrapper}>
-                {children}
+            {children}
         </div>
     );
 }

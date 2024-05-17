@@ -1,13 +1,14 @@
-// "use client"
-
 import { CourseBegin } from "@/components/CourseBegin";
 import { CourseMain } from "@/components/CourseMain";
 
-export default function CoursePage() {
+interface CoursePageProps {
+    courseData: any;
+}
 
+export default function CoursePage({ courseData }: CoursePageProps) {
     return (
         <>
-            <CourseMain />
+            <CourseMain courseData={courseData} />
             <CourseBegin />
         </>
     );
