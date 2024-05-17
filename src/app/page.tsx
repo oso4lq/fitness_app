@@ -1,12 +1,19 @@
-import { CourseMain } from "@/components/CourseMain";
-import { Header } from "@/components/Header";
-import Image from "next/image";
+// "use client"
+
+import Link from "next/link";
+
 
 export default function Home() {
   return (
     <>
-      <Header />
-      {/* <CourseMain /> */}
+
+
+      <div className="DEVBLOCK">
+        <p>блок на время разработки с кнопками на страницы</p>
+        <Link href={"/course/"}>Course Page</Link>
+        <Link href={"/profile/"}>Profile Page</Link>
+        <Link href={"/workout/"}>Workout Page</Link>
+      </div>
     </>
   );
 }

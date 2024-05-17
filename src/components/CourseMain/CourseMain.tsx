@@ -1,5 +1,5 @@
-// import classNames from "classnames";
-import styles from "./Bar.module.css";
+import classNames from "classnames";
+import styles from "./CourseMain.module.css";
 
 export default function CourseMain() {
     // logic
@@ -8,7 +8,7 @@ export default function CourseMain() {
     return (
         <>
             <p>course main works!</p>
-            <h1>Подойдёт для вас, если:</h1>
+            {/* <h1>Подойдёт для вас, если:</h1> */}
         </>
     )
 }
