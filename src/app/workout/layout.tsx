@@ -4,7 +4,7 @@ export default function WorkoutLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div data-tid="layout">
+        <div data-tid="layout" className="px-[100px]">
             {children}
         </div>
     );
