@@ -23,16 +23,14 @@ const config: Config = {
       "green-light": "#C6FF00",
       "green-dark": "#BCEC30",
 
-      "error-input": "#DB0030",
-      "error-text": "#F84D4D",
+      "error": "#DB0030",
 
       "blue-graph": "#00C1FF",
 
       "gray-light": "#F7F7F7",
       "gray-dark": "#E9ECED",
 
-      "gray-text-border": "#999999",
-      "gray-text-input": "#D0CECE",
+      "gray-extra": "#D0CECE",
 
       "theme-yellow": "#FFC700",
       "theme-blue": "#2491D2",
@@ -44,3 +42,5 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+
+
