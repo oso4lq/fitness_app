@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import data from "../../../lib/data.json";
 import { Workout, WorkoutsData } from "@/types/types";
 import styles from "../page.module.css";
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
@@ -105,14 +106,15 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                       >
                         {nameExerciseUpgrate}
                       </p>
-                      <input
+                      {/* <input
                         data-tid="tyles.progressBarExercise"
                         type="range"
                         name="exerciseProgress"
                         max={item.quantity}
                         value={currentProgress}
                         className="mt-2 w-full"
-                      />
+                      /> */}
+                      <ProgressBar completionPercentage={completionPercentage}/>
                     </div>
                   );
                 })}
