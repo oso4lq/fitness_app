@@ -14,6 +14,11 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    borderRadius: {
+      DEFAULT: "30px",
+      small: "8px",
+      large: "46px",
+    },
     colors: {
       "bg-main": "#FAFAFA",
 
@@ -23,7 +28,7 @@ const config: Config = {
       "green-light": "#C6FF00",
       "green-dark": "#BCEC30",
 
-      "error": "#DB0030",
+      error: "#DB0030",
 
       "blue-graph": "#00C1FF",
 
@@ -39,10 +44,6 @@ const config: Config = {
       "theme-violet": "#7D458C",
     },
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };
 export default config;
-
-
