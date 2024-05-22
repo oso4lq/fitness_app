@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Roboto } from "next/font/google";
+import { HeaderController } from "@/components/HeaderController";
 import "./globals.css";
-import { Header } from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ subsets: ["cyrillic"], weight: ["400", "500", "700"] });
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={roboto.className}>
-        <Header />
+        <HeaderController />
         {children}
       </body>
     </html>
