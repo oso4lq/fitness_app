@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tippyjs/react": "^4.2.6",
     "classnames": "^2.5.1",
     "next": "14.2.3",
     "react": "^18",

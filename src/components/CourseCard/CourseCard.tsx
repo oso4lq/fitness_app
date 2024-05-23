@@ -4,6 +4,8 @@ import Image from "next/image";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { CoursType } from "@/types/types";
 import { usePathname } from "next/navigation";
+import Tippy from "@tippyjs/react";
+// import "tippy.js/dist/tippy.css"; // Импорт CSS для Tippy.js
 
 interface CourseCardProps {
   courseData: CoursType;
@@ -14,6 +16,9 @@ export default function CourseCard({ courseData }: CourseCardProps) {
   const isProfilePage = pathname === "/profile";
   const minusBtnUrl = "img/icon/minus.svg";
   const plusBtnUrl = "img/icon/plus.svg";
+  const tooltipContent = isProfilePage
+    ? "Удалить тренировку"
+    : "Добавить тренировку";
 
   return (
     <div className="w-[360px] rounded-[30px] shadow-blocks bg-white-base">
@@ -25,14 +30,21 @@ export default function CourseCard({ courseData }: CourseCardProps) {
           width={360}
           className="object-cover w-full h-full"
         />
-        <button className="absolute top-5 right-5">
-          <Image
-            src={isProfilePage ? minusBtnUrl : plusBtnUrl}
-            alt="minusBtn"
-            width={32}
-            height={32}
-          />
-        </button>
+        <Tippy
+          content={tooltipContent}
+          placement="right"
+          offset={[40, 10]}
+          className="bg-white-base border border-black-base rounded-[5px] p-[6px] text-[14px] leading-[15.4px] font-normal shadow-lg"
+        >
+          <button className="absolute top-5 right-5">
+            <Image
+              src={isProfilePage ? minusBtnUrl : plusBtnUrl}
+              alt={isProfilePage ? "minusBtn" : "plusBtn"}
+              width={32}
+              height={32}
+            />
+          </button>
+        </Tippy>
       </div>
       <div className="mx-[30px] mt-[25px] mb-[15px]">
         <h3 className="text-[32px] leading-[35px] mb-[20px] font-medium">
