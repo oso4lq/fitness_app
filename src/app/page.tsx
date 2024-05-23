@@ -1,3 +1,4 @@
+import CourseCardList from "@/components/CourseCardList/CourseCardList";
 import Link from "next/link";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
         <Link href={"/profile/"}>Profile Page</Link>
         <Link href={"/workout/"}>Workout Page 9yolz2</Link>
       </div>
+      <CourseCardList/>
     </>
   );
 }

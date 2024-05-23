@@ -1,7 +1,7 @@
 import user from "../../../public/img/icon/photo_user.svg";
 import Image from "next/image";
 
-export default function ProfileUserInfoBlock() {
+export default function UserProfile() {
   return (
     <>
       <h2
