@@ -1,8 +1,9 @@
 import Logo from "../Logo/Logo";
+import Modal from "../Modal/Modal";
 
-export default function ResetPass() {
+export default function ResetPass({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="h-[363px] w-[360px] rounded p-[40px] bg-white-base">
+    <Modal isOpen={isOpen}>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -32,6 +33,6 @@ export default function ResetPass() {
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }

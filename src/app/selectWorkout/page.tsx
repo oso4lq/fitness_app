@@ -1,9 +1,14 @@
+"use client"
+
 import SelectWorkout from "@/components/SelectWorkout/SelectWorkout";
+import { useState } from "react";
 
 export default function SelectWorkoutPage() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed left-0 top-0 bg-black-base bg-opacity-20 w-screen h-screen flex justify-center items-center">
-      <SelectWorkout />
-    </div>
+    <>
+    <button onClick={() => setIsOpen(true)}>выбор трени</button>
+      <SelectWorkout isOpen={isOpen}/>
+    </>
   );
 }

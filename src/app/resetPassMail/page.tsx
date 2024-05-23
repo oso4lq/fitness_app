@@ -1,9 +1,14 @@
-import ResetPassMail from "@/components/ResetPassMail/ResetPassMail";
+"use client";
 
-export default function resetPassMailPage() {
+import ResetPassMail from "@/components/ResetPassMail/ResetPassMail";
+import { useState } from "react";
+
+export default function ResetPassMailPage() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed left-0 top-0 bg-black-base bg-opacity-20 w-screen h-screen flex justify-center items-center">
-      <ResetPassMail />
-    </div>
+    <>
+      <button onClick={() => setIsOpen(true)}>смена пароля email</button>
+      <ResetPassMail isOpen={isOpen} />
+    </>
   );
 }

@@ -1,8 +1,9 @@
 import Logo from "../Logo/Logo";
+import Modal from "../Modal/Modal";
 
-export default function LogIn() {
+export default function LogIn({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="h-[425px] w-[360px] rounded p-[40px] bg-white-base">
+    <Modal isOpen={isOpen}>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -39,6 +40,6 @@ export default function LogIn() {
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }

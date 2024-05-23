@@ -1,9 +1,14 @@
+"use client";
+
 import SignIn from "@/components/SignIn/SignIn";
+import { useState } from "react";
 
 export default function SignInPage() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed left-0 top-0 bg-black-base bg-opacity-20 w-screen h-screen flex justify-center items-center">
-      <SignIn />
-    </div>
+    <>
+      <button onClick={() => setIsOpen(true)}>зарегайтесь</button>
+      <SignIn isOpen={isOpen} />
+    </>
   );
 }

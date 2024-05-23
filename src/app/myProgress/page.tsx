@@ -1,9 +1,14 @@
+"use client";
+
 import MyProgress from "@/components/MyProgress/MyProgress";
+import { useState } from "react";
 
 export default function MyProgressPage() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed left-0 top-0 bg-black-base bg-opacity-20 w-screen h-screen flex justify-center items-center">
-      <MyProgress />
-    </div>
+    <>
+      <button onClick={() => setIsOpen(true)}>мой прогресс</button>
+      <MyProgress isOpen={isOpen} />
+    </>
   );
 }

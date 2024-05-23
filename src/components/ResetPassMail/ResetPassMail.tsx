@@ -1,8 +1,9 @@
 import Logo from "../Logo/Logo";
+import Modal from "../Modal/Modal";
 
-export default function ResetPassMail() {
+export default function ResetPassMail({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="h-[223px] w-[360px] rounded p-[40px] bg-white-base">
+    <Modal isOpen={isOpen}>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -11,6 +12,6 @@ export default function ResetPassMail() {
           Ссылка для востановления пароля отправлена на sergey.petrov96@mail.ru
         </h6>
       </form>
-    </div>
+    </Modal>
   );
 }

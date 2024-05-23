@@ -1,18 +1,20 @@
-export default function MyProgress() {
+import Modal from "../Modal/Modal";
+
+export default function MyProgress({ isOpen }: { isOpen: boolean }) {
   return (
-    <div className="h-[596px] w-[426px] rounded p-[40px] bg-white-base">
-      <div className="h-[35px] mb-12">
-        <h2 className="text-3xl leading-8 text-left font-medium">
+    <Modal isOpen={isOpen}>
+      <div className="mb-8">
+        <h1 className="text-3xl leading-8 text-left font-medium">
           Мой прогресс
-        </h2>
+        </h1>
       </div>
       <form>
-        <div className="h-[346px] w-[346px] mb-9 overflow-y-auto scrollbar">
+        <div className="h-[346px] mb-9 overflow-y-auto scrollbar">
           <div className="mr-5">
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали наклоны вперед?
-              </h6>
+              </p>
               <div>
                 <input
                   type="number"
@@ -22,9 +24,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали наклоны назад?
-              </h6>
+              </p>
               <div className="">
                 <input
                   type="number"
@@ -34,9 +36,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали поднятие ног, согнутых в коленях?
-              </h6>
+              </p>
               <div className="">
                 <input
                   type="number"
@@ -46,9 +48,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали наклоны вперед?
-              </h6>
+              </p>
               <div>
                 <input
                   type="number"
@@ -58,9 +60,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали наклоны назад?
-              </h6>
+              </p>
               <div className="">
                 <input
                   type="number"
@@ -70,9 +72,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали поднятие ног, согнутых в коленях?
-              </h6>
+              </p>
               <div className="">
                 <input
                   type="number"
@@ -82,9 +84,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали наклоны вперед?
-              </h6>
+              </p>
               <div>
                 <input
                   type="number"
@@ -94,9 +96,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="mb-5 space-y-2">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали наклоны назад?
-              </h6>
+              </p>
               <div className="">
                 <input
                   type="number"
@@ -106,9 +108,9 @@ export default function MyProgress() {
               </div>
             </div>
             <div className="">
-              <h6 className="text-lg leading-5 text-left">
+              <p className="text-sm leading-5 text-left">
                 Сколько раз вы сделали поднятие ног, согнутых в коленях?
-              </h6>
+              </p>
               <div className="">
                 <input
                   type="number"
@@ -128,6 +130,6 @@ export default function MyProgress() {
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }

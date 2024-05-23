@@ -1,9 +1,14 @@
-import ResetPass from "@/components/ResetPass/ResetPass";
+"use client";
 
-export default function resetPassPage() {
+import ResetPass from "@/components/ResetPass/ResetPass";
+import { useState } from "react";
+
+export default function ResetPassPage() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed left-0 top-0 bg-black-base bg-opacity-20 w-screen h-screen flex justify-center items-center">
-      <ResetPass />
-    </div>
+    <>
+      <button onClick={() => setIsOpen(true)}>поменяй пароль</button>
+      <ResetPass isOpen={isOpen} />
+    </>
   );
 }

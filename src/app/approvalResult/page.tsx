@@ -1,9 +1,14 @@
+"use client";
+
 import ApprovalResult from "@/components/ApprovalResult/ApprovalResult";
+import { useState } from "react";
 
 export default function ApprovalResultPage() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed left-0 top-0 bg-black-base bg-opacity-20 w-screen h-screen flex justify-center items-center">
-      <ApprovalResult />
-    </div>
+    <>
+      <button onClick={() => setIsOpen(true)}>прогресс засчитан</button>
+      <ApprovalResult isOpen={isOpen} />
+    </>
   );
 }
