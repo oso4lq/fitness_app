@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import data from "../../../lib/data.json";
 import { Workout, WorkoutsData } from "@/types/types";
 import styles from "../page.module.css";
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
@@ -70,7 +71,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
           {workoutData.exercises ? (
             <div
               data-tid="styles.exercisesBlock"
-              className="mt-10 rounded-2xl bg-white p-10 shadow-lg"
+              className="mt-10 rounded-2xl bg-white-base p-10 shadow-blocks"
             >
               <h2
                 data-tid="styles.titleExercises"
@@ -85,7 +86,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 className="mt-5 flex flex-wrap items-start gap-y-[20px] gap-x-[60px]"
               >
                 {workoutData.exercises?.map((item, index) => {
-                  const currentProgress = 0; //заглушка для рендера, поменять логику на получение из инпута
+                  const currentProgress = 5; //заглушка для рендера, поменять логику на получение из инпута
                   const completionPercentage =
                     (currentProgress / item.quantity) * 100;
                   const nameExerciseUpgrate: string = item.name.replace(
@@ -105,14 +106,15 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                       >
                         {nameExerciseUpgrate}
                       </p>
-                      <input
+                      {/* <input
                         data-tid="tyles.progressBarExercise"
                         type="range"
                         name="exerciseProgress"
                         max={item.quantity}
                         value={currentProgress}
                         className="mt-2 w-full"
-                      />
+                      /> */}
+                      <ProgressBar completionPercentage={completionPercentage}/>
                     </div>
                   );
                 })}
