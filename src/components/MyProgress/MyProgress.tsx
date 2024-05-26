@@ -1,3 +1,4 @@
+import { Button } from "../Button/Button";
 import Modal from "../Modal/Modal";
 
 export default function MyProgress({ isOpen }: { isOpen: boolean }) {
@@ -122,12 +123,7 @@ export default function MyProgress({ isOpen }: { isOpen: boolean }) {
           </div>
         </div>
         <div className="">
-          <button
-            type="button"
-            className="h-[52px] bg-green-dark text-black-base hover:bg-green-light w-full text-center rounded-large"
-          >
-            Сохранить
-          </button>
+        <Button>Сохранить</Button>
         </div>
       </form>
     </Modal>

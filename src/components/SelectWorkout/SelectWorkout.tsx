@@ -1,3 +1,4 @@
+import { Button } from "../Button/Button";
 import Modal from "../Modal/Modal";
 
 export default function SelectWorkout({ isOpen }: { isOpen: boolean }) {
@@ -146,13 +147,8 @@ export default function SelectWorkout({ isOpen }: { isOpen: boolean }) {
             </div>
           </div>
         </div>
-        <div className="">
-          <button
-            type="button"
-            className="h-[52px] bg-green-dark text-black-base hover:bg-green-light w-full text-center rounded-large"
-          >
-            Начать
-          </button>
+        <div>
+        <Button>Начать</Button>
         </div>
       </form>
     </Modal>

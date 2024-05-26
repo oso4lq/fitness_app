@@ -1,3 +1,4 @@
+// import Link from "next/link";
 import Logo from "../Logo/Logo";
 import Modal from "../Modal/Modal";
 
@@ -11,6 +12,7 @@ export default function ResetPassMail({ isOpen }: { isOpen: boolean }) {
         <h6 className="leading-tight text-center">
           Ссылка для востановления пароля отправлена на sergey.petrov96@mail.ru
         </h6>
+        {/* <Link to={?????????}>sergey.petrov96@mail.ru</Link> */}
       </form>
     </Modal>
   );

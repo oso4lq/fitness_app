@@ -1,7 +1,9 @@
+import { Button, ButtonAdditional } from "../Button/Button";
+import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
 import Modal from "../Modal/Modal";
 
-export default function SignIn({isOpen}:{isOpen: boolean}) {
+export default function SignIn({ isOpen }: { isOpen: boolean }) {
   return (
     <Modal isOpen={isOpen}>
       <div className="mb-12 flex justify-center items-center">
@@ -9,44 +11,29 @@ export default function SignIn({isOpen}:{isOpen: boolean}) {
       </div>
       <form>
         <div className="mb-8">
-          <div className="mb-2.5">
-            <input
-              type="text"
-              placeholder="Логин"
-              className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-            />
-          </div>
-          <div className="mb-2.5">
-            <input
-              type="password"
-              placeholder="Пароль"
-              className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Повторите пароль"
-              className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-            />
-          </div>
+          <Input
+            className="mb-2.5"
+            name="login"
+            type="text"
+            placeholder="Логин"
+          ></Input>
+          <Input
+            className="mb-2.5"
+            name="password"
+            type="password"
+            placeholder="Пароль"
+          ></Input>
+          <Input
+            name="password"
+            type="password"
+            placeholder="Повторите пароль"
+          ></Input>
         </div>
         <div>
-          <button
-            type="button"
-            className="h-[52px] bg-green-dark text-black-base hover:bg-green-light w-full text-center rounded-large"
-          >
-            Войти
-          </button>
-
-          <button
-            type="button"
-            className="h-[52px] mt-3 bg-white-base text-black-base hover:bg-gray-light w-full text-center border border-black-base rounded-large"
-          >
-            Зарегистрироваться
-          </button>
+          <Button>Зарегистрироваться</Button>
+          <ButtonAdditional className="mt-3">Войти</ButtonAdditional>
         </div>
       </form>
-      </Modal>
+    </Modal>
   );
 }
