@@ -28,7 +28,7 @@ export default function CourseCard({ courseData }: CourseCardProps) {
     <div className="w-[360px] rounded-[30px] shadow-blocks bg-white-base">
       <div className="rounded-[30px] overflow-hidden w-[360px] h-[325px] relative">
         <Image
-          src={`/img/theme_${courseData.nameEN}.png`}
+          src={`/img/theme_${courseData.nameEN}.svg`}
           alt={courseData.nameRU}
           height={325}
           width={360}

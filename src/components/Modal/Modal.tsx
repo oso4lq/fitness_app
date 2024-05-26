@@ -1,28 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 
-interface ModalProps {
-  isOpen: boolean;
-  hasCloseBtn?: boolean;
-  onClose?: () => void;
-  children: React.ReactNode;
-}
-
-const Modal: React.FC<ModalProps> = ({
-  isOpen,
-  hasCloseBtn,
-  onClose,
-  children,
-}) => {
-  const [isModalOpen, setModalOpen] = useState(isOpen);
+export function Modal({ children }: { children: React.ReactNode }) {
   const modalRef = useRef<HTMLDialogElement | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!modalRef.current?.open) {
+      modalRef.current?.showModal();
+    }
+  }, []);
 
   const handleCloseModal = () => {
-    if (onClose) {
-      onClose();
-    }
-    setModalOpen(false);
+    router.back();
   };
 
   const handleClick = (event: React.MouseEvent<HTMLDialogElement>) => {
@@ -45,21 +37,6 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  useEffect(() => {
-    setModalOpen(isOpen);
-  }, [isOpen]);
-
-  useEffect(() => {
-    const modalElement = modalRef.current;
-    if (modalElement) {
-      if (isModalOpen) {
-        modalElement.showModal();
-      } else {
-        modalElement.close();
-      }
-    }
-  }, [isModalOpen]);
-
   return (
     <dialog
       ref={modalRef}
@@ -70,7 +47,6 @@ const Modal: React.FC<ModalProps> = ({
       {children}
     </dialog>
   );
-};
+}
 
 export default Modal;
-

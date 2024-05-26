@@ -1,8 +1,10 @@
-import Modal from "../Modal/Modal";
+"use client";
 
-export default function SelectWorkout({ isOpen }: { isOpen: boolean }) {
+import { Button } from "../Button/Button";
+
+export default function SelectWorkout() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-8">
         <h1 className="text-2xl leading-8 text-center font-medium">
           Выберите тренировку
@@ -146,16 +148,11 @@ export default function SelectWorkout({ isOpen }: { isOpen: boolean }) {
             </div>
           </div>
         </div>
-        <div className="">
-          <button
-            type="button"
-            className="h-[52px] bg-green-dark text-black-base hover:bg-green-light w-full text-center rounded-large"
-          >
-            Начать
-          </button>
+        <div>
+          <Button>Начать</Button>
         </div>
       </form>
-    </Modal>
+    </>
   );
 }
 

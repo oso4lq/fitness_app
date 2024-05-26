@@ -1,9 +1,11 @@
-import Logo from "../Logo/Logo";
-import Modal from "../Modal/Modal";
+"use client";
 
-export default function ResetPassMail({ isOpen }: { isOpen: boolean }) {
+// import Link from "next/link";
+import Logo from "../Logo/Logo";
+
+export default function ResetPassMail() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -11,7 +13,8 @@ export default function ResetPassMail({ isOpen }: { isOpen: boolean }) {
         <h6 className="leading-tight text-center">
           Ссылка для востановления пароля отправлена на sergey.petrov96@mail.ru
         </h6>
+        {/* <Link to={?????????}>sergey.petrov96@mail.ru</Link> */}
       </form>
-    </Modal>
+    </>
   );
 }
