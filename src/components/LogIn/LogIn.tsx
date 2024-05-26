@@ -1,11 +1,10 @@
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
-import Modal from "../Modal/Modal";
 
-export default function LogIn({ isOpen }: { isOpen: boolean }) {
+export default function LogIn() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -26,6 +25,6 @@ export default function LogIn({ isOpen }: { isOpen: boolean }) {
           </ButtonAdditional>
         </div>
       </form>
-    </Modal>
+    </>
   );
 }

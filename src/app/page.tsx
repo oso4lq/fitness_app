@@ -26,8 +26,8 @@ export default function Home() {
         <Link href={"/course/"}>Course Page q02a6i</Link>
         <Link href={"/profile/"}>Profile Page</Link>
         <Link href={"/workout/"}>Workout Page</Link>
-        <Link href={"/logIn/"}>Log in</Link>
-        <Link href={"/signIn/"}>Sign in</Link>
+        <Link href={"/login/"}>Log in</Link>
+        <Link href={"/signin/"}>Sign in</Link>
         <Link href={"/resetPassMail/"}>Reset mail</Link>
         <Link href={"/resetPass/"}>Reset password</Link>
         <Link href={"/selectWorkout/"}>Select workout</Link>

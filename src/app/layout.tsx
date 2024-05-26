@@ -14,8 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  auth,
   children,
 }: Readonly<{
+  auth: React.ReactNode;
   children: React.ReactNode;
 }>) {
   return (
@@ -23,6 +25,7 @@ export default function RootLayout({
       <ReduxProvider>
         <body className={roboto.className}>
           <HeaderController />
+          {auth}
           {children}
         </body>
       </ReduxProvider>
