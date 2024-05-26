@@ -1,10 +1,11 @@
+"use client";
+
 // import Link from "next/link";
 import Logo from "../Logo/Logo";
-import Modal from "../Modal/Modal";
 
-export default function ResetPassMail({ isOpen }: { isOpen: boolean }) {
+export default function ResetPassMail() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -14,6 +15,6 @@ export default function ResetPassMail({ isOpen }: { isOpen: boolean }) {
         </h6>
         {/* <Link to={?????????}>sergey.petrov96@mail.ru</Link> */}
       </form>
-    </Modal>
+    </>
   );
 }

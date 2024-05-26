@@ -27,12 +27,12 @@ export default function Home() {
         <Link href={"/profile/"}>Profile Page</Link>
         <Link href={"/workout/"}>Workout Page</Link>
         <Link href={"/login/"}>Log in</Link>
-        <Link href={"/signin/"}>Sign in</Link>
-        <Link href={"/resetPassMail/"}>Reset mail</Link>
-        <Link href={"/resetPass/"}>Reset password</Link>
-        <Link href={"/selectWorkout/"}>Select workout</Link>
-        <Link href={"/myProgress/"}>My Progress</Link>
-        <Link href={"/approvalResult/"}>Approval result</Link>
+        <Link href={"/signup/"}>Sign up</Link>
+        <Link href={"/reset-pass-mail/"}>Reset mail</Link>
+        <Link href={"/reset-pass/"}>Reset password</Link>
+        <Link href={"/select-workout/"}>Select workout</Link>
+        <Link href={"/my-progress/"}>My Progress</Link>
+        <Link href={"/approval-result/"}>Approval result</Link>
       </div>
     </>
   );

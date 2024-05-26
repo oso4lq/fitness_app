@@ -1,9 +1,10 @@
-import { Button } from "../Button/Button";
-import Modal from "../Modal/Modal";
+"use client";
 
-export default function MyProgress({ isOpen }: { isOpen: boolean }) {
+import { Button } from "../Button/Button";
+
+export default function MyProgress() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-8">
         <h1 className="text-3xl leading-8 text-left font-medium">
           Мой прогресс
@@ -123,9 +124,9 @@ export default function MyProgress({ isOpen }: { isOpen: boolean }) {
           </div>
         </div>
         <div className="">
-        <Button>Сохранить</Button>
+          <Button>Сохранить</Button>
         </div>
       </form>
-    </Modal>
+    </>
   );
 }

@@ -1,11 +1,14 @@
-import Image from "next/image";
-import Modal from "../Modal/Modal";
+"use client";
 
-export default function ApprovalResult({isOpen}:{isOpen: boolean}) {
+import Image from "next/image";
+
+export default function ApprovalResult() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="h-[96px] mb-[34px] flex justify-center items-center">
-        <h1 className="text-4xl text-center font-medium">Ваш прогресс засчитан!</h1>
+        <h1 className="text-4xl text-center font-medium">
+          Ваш прогресс засчитан!
+        </h1>
       </div>
       <div className="flex justify-center items-center">
         <Image
@@ -16,6 +19,6 @@ export default function ApprovalResult({isOpen}:{isOpen: boolean}) {
           height={57}
         />
       </div>
-    </Modal>
+    </>
   );
 }

@@ -1,11 +1,12 @@
+"use client"
+
 import { Button } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
-import Modal from "../Modal/Modal";
 
-export default function ResetPass({ isOpen }: { isOpen: boolean }) {
+export default function ResetPass() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -27,6 +28,6 @@ export default function ResetPass({ isOpen }: { isOpen: boolean }) {
           <Button>Подтвердить</Button>
         </div>
       </form>
-    </Modal>
+    </>
   );
 }
