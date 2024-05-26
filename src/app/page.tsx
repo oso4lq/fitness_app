@@ -1,7 +1,10 @@
+"use client";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
+import { useAppSelector } from "@/hooks";
 import Link from "next/link";
 
 export default function Home() {
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   return (
     <>
       <div className="mt-14 mb-12 h-[120px] flex">
