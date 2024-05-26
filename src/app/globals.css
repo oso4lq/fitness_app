@@ -21,7 +21,7 @@ body {
   margin: 0 auto;
   color: rgb(var(--foreground-rgb));
   background: #FAFAFA;
-  padding: 20px 40px;
+  padding-top: 20px;
 }
 
 p {
@@ -77,4 +77,5 @@ padding: 0;}
   justify-content: space-between;
   padding: 20px;
   border: 4px solid red;
+  margin-top: 60px;
 }

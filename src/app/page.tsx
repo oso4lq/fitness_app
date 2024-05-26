@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <div className="mt-14 mb-12 h-[120px] flex">
-        <div className="w-[872px] bg-theme-yellow">
+        <div className="w-[872px]">
           <h1 className="text-5xl font-medium">
             Начните заниматься спортом и улучшите качество жизни
           </h1>
@@ -14,16 +14,9 @@ export default function Home() {
           <div className="speech-bubble rounded-small bg-green-dark">
             <h2 className="text-2xl mx-5 my-4">Измени своё тело за полгода!</h2>
           </div>
-          
         </div>
       </div>
-      <div className="flex">
-        <div className="w-[360px] h-[500px] bg-gray-light">блок карточки</div>
-        <div className="w-[360px] h-[500px] mx-10 bg-gray-light">
-          блок карточки
-        </div>
-        <div className="w-[360px] h-[500px] bg-gray-light">блок карточки</div>
-      </div>
+      <CourseCardList />
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>
@@ -38,11 +31,6 @@ export default function Home() {
         <Link href={"/myProgress/"}>My Progress</Link>
         <Link href={"/approvalResult/"}>Approval result</Link>
       </div>
-      <CourseCardList/>
     </>
   );
 }
-
-
-
-
