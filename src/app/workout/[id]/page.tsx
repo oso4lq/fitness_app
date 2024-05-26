@@ -4,6 +4,7 @@ import data from "../../../lib/data.json";
 import { Workout, WorkoutsData } from "@/types/types";
 import styles from "../page.module.css";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
+import { Button } from "@/components/Button/Button";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
@@ -83,7 +84,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
 
               <div
                 data-tid="styles.containerListExercises"
-                className="mt-5 flex flex-wrap items-start gap-y-[20px] gap-x-[60px]"
+                className="mt-5 mb-10 flex flex-wrap items-start gap-y-[20px] gap-x-[60px]"
               >
                 {workoutData.exercises?.map((item, index) => {
                   const currentProgress = 5; //заглушка для рендера, поменять логику на получение из инпута
@@ -106,26 +107,15 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                       >
                         {nameExerciseUpgrate}
                       </p>
-                      {/* <input
-                        data-tid="tyles.progressBarExercise"
-                        type="range"
-                        name="exerciseProgress"
-                        max={item.quantity}
-                        value={currentProgress}
-                        className="mt-2 w-full"
-                      /> */}
-                      <ProgressBar completionPercentage={completionPercentage}/>
+                      <ProgressBar
+                        completionPercentage={completionPercentage}
+                      />
                     </div>
                   );
                 })}
               </div>
 
-              <button
-                data-tid="styles.btn"
-                className="mt-10 w-80 h-[52px] rounded-full border text-lg font-normal leading-tight"
-              >
-                Заполнить свой прогресс
-              </button>
+              <Button width="320px">Заполнить свой прогресс</Button>
             </div>
           ) : (
             ""

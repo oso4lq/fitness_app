@@ -1,5 +1,6 @@
 import user from "../../../public/img/icon/photo_user.svg";
 import Image from "next/image";
+import { Button, ButtonAdditional } from "../Button/Button";
 
 export default function UserProfile() {
   return (
@@ -27,12 +28,8 @@ export default function UserProfile() {
               </p>
             </div>
             <div className="w-[394px] flex flex-wrap gap-[10px]">
-              <button className="w-[192px] h-[52px] rounded-full border text-lg font-normal leading-tight">
-                Изменить пароль
-              </button>
-              <button className="w-[192px] h-[52px] rounded-full border text-lg font-normal leading-tight">
-                Выйти
-              </button>
+              <Button width="192px">Изменить пароль</Button>
+              <ButtonAdditional width="192px">Выйти</ButtonAdditional>
             </div>
           </div>
         </div>

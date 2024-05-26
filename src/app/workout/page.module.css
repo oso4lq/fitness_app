@@ -48,7 +48,8 @@
   align-items: flex-start;
 }
 .wrapperExercise {
-  width: calc(33.33% - 40px);
+  /* width: calc(33.33% - 40px); */
+  width: 320px;
 }
 .nameExercise {
   font-size: 18px;
