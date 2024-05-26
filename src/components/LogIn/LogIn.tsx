@@ -1,8 +1,14 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
+import Routes from "@/routes";
 
 export default function LogIn() {
+  const router = useRouter();
+
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
@@ -20,7 +26,12 @@ export default function LogIn() {
         </div>
         <div>
           <Button>Войти</Button>
-          <ButtonAdditional className="mt-3">
+          <ButtonAdditional
+            className="mt-3"
+            onClick={() => {
+              router.push(Routes.SignUp);
+            }}
+          >
             Зарегистрироваться
           </ButtonAdditional>
         </div>

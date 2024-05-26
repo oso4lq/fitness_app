@@ -1,11 +1,16 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
-import Modal from "../Modal/Modal";
+import Routes from "@/routes";
 
-export default function SignIn({ isOpen }: { isOpen: boolean }) {
+export default function SignUp() {
+  const router = useRouter();
+
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
@@ -31,9 +36,16 @@ export default function SignIn({ isOpen }: { isOpen: boolean }) {
         </div>
         <div>
           <Button>Зарегистрироваться</Button>
-          <ButtonAdditional className="mt-3">Войти</ButtonAdditional>
+          <ButtonAdditional
+            className="mt-3"
+            onClick={() => {
+              router.push(Routes.Login);
+            }}
+          >
+            Войти
+          </ButtonAdditional>
         </div>
       </form>
-    </Modal>
+    </>
   );
 }
