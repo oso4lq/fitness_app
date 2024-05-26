@@ -1,5 +1,4 @@
-// "use client"
-
+import CourseCardList from "@/components/CourseCardList/CourseCardList";
 import Link from "next/link";
 
 export default function Home() {
@@ -28,7 +27,7 @@ export default function Home() {
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>
-        <Link href={"/course/"}>Course Page</Link>
+        <Link href={"/course/"}>Course Page q02a6i</Link>
         <Link href={"/profile/"}>Profile Page</Link>
         <Link href={"/workout/"}>Workout Page</Link>
         <Link href={"/logIn/"}>Log in</Link>
@@ -39,6 +38,7 @@ export default function Home() {
         <Link href={"/myProgress/"}>My Progress</Link>
         <Link href={"/approvalResult/"}>Approval result</Link>
       </div>
+      <CourseCardList/>
     </>
   );
 }

@@ -43,6 +43,9 @@ const config: Config = {
       "theme-peach": "#FF7E65",
       "theme-violet": "#7D458C",
     },
+    boxShadow: {
+      blocks: '0px 4px 67px -12px #00000021',
+    },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
 };

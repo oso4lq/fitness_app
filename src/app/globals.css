@@ -20,11 +20,13 @@ body {
   width: 1160px;
   margin: 0 auto;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: #FAFAFA;
   padding: 20px 40px;
 }
+
+p {
+margin: 0;
+padding: 0;}
 
 @layer utilities {
   .text-balance {
