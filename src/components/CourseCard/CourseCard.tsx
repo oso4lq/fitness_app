@@ -5,6 +5,9 @@ import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { CoursType } from "@/types/types";
 import { usePathname } from "next/navigation";
 import Tippy from "@tippyjs/react";
+import { Button } from "../Button/Button";
+import { getTextButtonProfile } from "@/lib/getTextButtonProfile";
+
 // import "tippy.js/dist/tippy.css"; // Импорт CSS для Tippy.js
 
 interface CourseCardProps {
@@ -12,6 +15,7 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({ courseData }: CourseCardProps) {
+  const completionPercentage: number = 30;  //заменить на получение из backend
   const pathname = usePathname();
   const isProfilePage = pathname === "/profile";
   const minusBtnUrl = "img/icon/minus.svg";
@@ -83,12 +87,10 @@ export default function CourseCard({ courseData }: CourseCardProps) {
             {" "}
             {/* Написать логику получения данных о проценте выполнении */}
             <div className="mb-[40px]">
-              <p>Прогресс 40%</p>
-              <ProgressBar completionPercentage={40} />
+              <p>{`Прогресс ${completionPercentage}%`}</p>
+              <ProgressBar completionPercentage={completionPercentage} />
             </div>
-            <button className="w-full h-[52px] rounded-[50px] border text-lg font-normal leading-tight">
-              Продолжить
-            </button>
+            <Button>{getTextButtonProfile(completionPercentage)}</Button>
           </>
         ) : (
           ""

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import styles from "./CourseBegin.module.css";
 import Image from "next/image";
+import { Button } from "../Button/Button";
 
 export default function CourseBegin() {
     // logic
@@ -8,15 +9,15 @@ export default function CourseBegin() {
 
     return (
         <div className={styles.beginBox}>
-            <div>
+            <div className="w-[437px]">
                 <h1>Начните путь к новому телу</h1>
                 <p>проработка всех групп мышц    </p>
                 <p>тренировка суставов</p>
                 <p>улучшение циркуляции крови</p>
                 <p>упражнения заряжают бодростью</p>
                 <p>помогают противостоять стрессам</p>
-                <button>Войдите, чтобы добавить курс</button>
-                <button>Добавить курс</button>
+                <Button>Войдите, чтобы добавить курс</Button>
+                {/* <button>Добавить курс</button> // заменить на условное применение текста в кнопке по авторизации*/}
             </div>
             <Image
                 width={250}
