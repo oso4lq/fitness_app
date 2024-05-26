@@ -1,18 +1,9 @@
-.courseMainBox {
-    margin-bottom: 20px;
-    border: 1px solid black;
-}
-
-.title {
-    font-size: 20px;
-    font-weight: bold;
-}
 
 .fitting {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
     gap: 10px;
 }
 

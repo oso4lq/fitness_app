@@ -1,7 +1,0 @@
-.activityBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background: aqua;
-    margin-bottom: 20px;
-}
