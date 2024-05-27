@@ -12,6 +12,8 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "dark-gradient":
+          "linear-gradient(115.81deg, #151720 34.98%, #1E212E 91.5%)",
       },
     },
     borderRadius: {
@@ -44,7 +46,7 @@ const config: Config = {
       "theme-violet": "#7D458C",
     },
     boxShadow: {
-      blocks: '0px 4px 67px -12px #00000021',
+      blocks: "0px 4px 67px -12px #00000021",
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
