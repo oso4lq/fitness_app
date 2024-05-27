@@ -1,7 +1,10 @@
+"use client";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
+import { useAppSelector } from "@/hooks";
 import Link from "next/link";
 
 export default function Home() {
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   return (
     <>
       <div className="mt-14 mb-12 h-[120px] flex">
@@ -23,13 +26,13 @@ export default function Home() {
         <Link href={"/course/"}>Course Page q02a6i</Link>
         <Link href={"/profile/"}>Profile Page</Link>
         <Link href={"/workout/"}>Workout Page</Link>
-        <Link href={"/logIn/"}>Log in</Link>
-        <Link href={"/signIn/"}>Sign in</Link>
-        <Link href={"/resetPassMail/"}>Reset mail</Link>
-        <Link href={"/resetPass/"}>Reset password</Link>
-        <Link href={"/selectWorkout/"}>Select workout</Link>
-        <Link href={"/myProgress/"}>My Progress</Link>
-        <Link href={"/approvalResult/"}>Approval result</Link>
+        <Link href={"/login/"}>Log in</Link>
+        <Link href={"/signup/"}>Sign up</Link>
+        <Link href={"/reset-pass-mail/"}>Reset mail</Link>
+        <Link href={"/reset-pass/"}>Reset password</Link>
+        <Link href={"/select-workout/"}>Select workout</Link>
+        <Link href={"/my-progress/"}>My Progress</Link>
+        <Link href={"/approval-result/"}>Approval result</Link>
       </div>
     </>
   );

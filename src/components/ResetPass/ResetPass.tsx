@@ -1,38 +1,33 @@
-import Logo from "../Logo/Logo";
-import Modal from "../Modal/Modal";
+"use client"
 
-export default function ResetPass({ isOpen }: { isOpen: boolean }) {
+import { Button } from "../Button/Button";
+import Input from "../Input/Input";
+import Logo from "../Logo/Logo";
+
+export default function ResetPass() {
   return (
-    <Modal isOpen={isOpen}>
+    <>
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
       <form>
         <div className="mb-8">
-          <div className="mb-2.5">
-            <input
-              type="password"
-              placeholder="Новый пароль"
-              className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Повторите пароль"
-              className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-            />
-          </div>
+          <Input
+            className="mb-2.5"
+            name="password"
+            type="password"
+            placeholder="Новый пароль"
+          ></Input>
+          <Input
+            name="password"
+            type="password"
+            placeholder="Повторите пароль"
+          ></Input>
         </div>
         <div>
-          <button
-            type="button"
-            className="h-[52px] bg-green-dark text-black-base hover:bg-green-light w-full text-center rounded-large"
-          >
-            Подтвердить
-          </button>
+          <Button>Подтвердить</Button>
         </div>
       </form>
-    </Modal>
+    </>
   );
 }
