@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import data from "../../../lib/data.json";
 import { Workout, WorkoutsData } from "@/types/types";
-import styles from "../page.module.css";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 import { Button } from "@/components/Button/Button";
 
@@ -37,13 +36,13 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
       {workoutData ? (
         <div>
           <h1
-            data-tid="styles.titleCourseName"
+            data-tid="titleCourseName"
             className="mt-10 text-6xl font-medium leading-none"
           >
             <span className="text-red-500">course_name from profile_page</span>
           </h1>
           <p
-            data-tid="styles.workoutName"
+            data-tid="workoutName"
             className="mt-6 text-4xl font-normal leading-snug"
           >
             {workoutData.name}
@@ -51,18 +50,18 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
 
           {/* выбрать что оставить либо iframe либо video */}
           <div
-            data-tid="styles.videoContainer"
-            className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9"
+            data-tid="videoContainer"
+            className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9 rounded"
           >
             <iframe
-              data-tid="styles.video"
+              data-tid="video"
               className="absolute top-0 left-0 h-full w-full rounded-2xl object-cover"
               src={workoutData.video}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             />
             {/* <video
-              data-tid="styles.videoContainer" className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9"
+              data-tid="videoContainer" className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9"
               src={workoutData.video}
               controls
               poster=""
@@ -71,11 +70,11 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
 
           {workoutData.exercises ? (
             <div
-              data-tid="styles.exercisesBlock"
-              className="mt-10 rounded-2xl bg-white-base p-10 shadow-blocks"
+              data-tid="exercisesBlock"
+              className="mt-10 mb-[60px] rounded bg-white-base p-10 shadow-blocks"
             >
               <h2
-                data-tid="styles.titleExercises"
+                data-tid="titleExercises"
                 className="text-4xl font-normal leading-snug"
               >
                 Упражнения тренировки{" "}
@@ -83,13 +82,13 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
               </h2>
 
               <div
-                data-tid="styles.containerListExercises"
-                className="mt-5 mb-10 flex flex-wrap items-start gap-y-[20px] gap-x-[60px]"
+                data-tid="containerListExercises"
+                className="mt-5 mb-10 flex flex-wrap items-end gap-y-[20px] gap-x-[60px]"
               >
                 {workoutData.exercises?.map((item, index) => {
                   const currentProgress = 5; //заглушка для рендера, поменять логику на получение из инпута
                   const completionPercentage =
-                    (currentProgress / item.quantity) * 100;
+                  Math.round((currentProgress / item.quantity) * 100);
                   const nameExerciseUpgrate: string = item.name.replace(
                     /\(\d+ повторений\)/,
                     `${completionPercentage}%`
@@ -98,11 +97,11 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                   return (
                     <div
                       key={index}
-                      data-tid="styles.wrapperExercise"
-                      className={styles.wrapperExercise}
+                      data-tid="wrapperExercise"
+                      className="w-[320px]"
                     >
                       <p
-                        data-tid="styles.nameExercise"
+                        data-tid="nameExercise"
                         className="text-lg font-normal leading-snug"
                       >
                         {nameExerciseUpgrate}

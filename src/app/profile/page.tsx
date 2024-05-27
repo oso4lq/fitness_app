@@ -3,7 +3,7 @@ import UserProfile from "@/components/UserProfile/UserProfile";
 
 export default function ProfilePage() {
   return (
-    <div data-tid="pageWrap" className="px-[100px] py-[60px]">
+    <div data-tid="pageWrap" className="py-[60px]">
       <UserProfile />
       <h2
         data-tid="titleCourses"
