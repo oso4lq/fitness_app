@@ -5,9 +5,17 @@ import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
 import Routes from "@/routes";
+import { useAppDispatch } from "@/hooks";
+import { logIn } from "@/store/features/userSlice";
 
 export default function LogIn() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const handleLogin = () => {
+    dispatch(logIn());
+    router.back();
+  };
 
   return (
     <>
@@ -25,7 +33,7 @@ export default function LogIn() {
           <Input name="password" type="password" placeholder="Пароль"></Input>
         </div>
         <div>
-          <Button>Войти</Button>
+          <Button onClick={handleLogin}>Войти</Button>
           <ButtonAdditional
             className="mt-3"
             onClick={() => {

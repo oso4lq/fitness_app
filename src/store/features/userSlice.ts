@@ -2,10 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   isAuthenticated: boolean;
+  name: string;
+  email: string;
 }
 
 const initialState: UserState = {
   isAuthenticated: false,
+  name: "",
+  email: "",
 };
 
 const UserSlice = createSlice({
@@ -14,6 +18,8 @@ const UserSlice = createSlice({
   reducers: {
     logIn: (state) => {
       state.isAuthenticated = true;
+      state.name = "Иван";
+      state.email = "Иван@mail.ru";
     },
     logOut: (state) => {
       state.isAuthenticated = false;
