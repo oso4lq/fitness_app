@@ -7,6 +7,7 @@ interface ButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
 
 function handleClick(
@@ -20,13 +21,14 @@ function handleClick(
   }
 }
 
-export function Button({ width, children, onClick }: ButtonProps) {
+export function Button({ width, children, onClick, disabled }: ButtonProps) {
   return (
     <button
       data-tid="styles.btn"
       onClick={(ev) => handleClick(ev, onClick)}
       style={{ width: width ? width : "100%" }}
       className="h-[52px] rounded-large text-lg font-normal leading-tight bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300"
+      disabled={disabled}
     >
       {children}
     </button>
@@ -38,6 +40,7 @@ export function ButtonAdditional({
   children,
   className,
   onClick,
+  disabled,
 }: ButtonProps) {
   return (
     <button
@@ -48,6 +51,7 @@ export function ButtonAdditional({
         className || "",
         "h-[52px] rounded-large text-lg font-normal leading-tight border bg-white-base hover:bg-gray-light active:bg-gray-dark disabled:bg-gray-light disabled:text-gray-dark disabled:border-gray-dark transition-colors duration-300"
       )}
+      disabled={disabled}
     >
       {children}
     </button>

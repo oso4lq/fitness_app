@@ -23,9 +23,9 @@ export default function Home() {
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>
-        <Link href={"/course/"}>Course Page q02a6i</Link>
+        <Link href={"/course/q02a6i"}>Course Page q02a6i</Link>
         <Link href={"/profile/"}>Profile Page</Link>
-        <Link href={"/workout/"}>Workout Page</Link>
+        <Link href={"/workout/17oz5f"}>Workout Page 17oz5f</Link>
         <Link href={"/login/"}>Log in</Link>
         <Link href={"/signup/"}>Sign up</Link>
         <Link href={"/reset-pass-mail/"}>Reset mail</Link>
