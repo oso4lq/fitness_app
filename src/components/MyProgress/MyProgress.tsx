@@ -1,8 +1,16 @@
 "use client";
 
+import Routes from "@/routes";
 import { Button } from "../Button/Button";
+import { useRouter } from "next/navigation";
 
 export default function MyProgress() {
+  const router = useRouter();
+
+  const onSaveClick = () => {
+    router.replace(Routes.ApprovalResult);
+  };
+
   return (
     <>
       <div className="mb-8">
@@ -124,7 +132,7 @@ export default function MyProgress() {
           </div>
         </div>
         <div className="">
-          <Button>Сохранить</Button>
+          <Button onClick={onSaveClick}>Сохранить</Button>
         </div>
       </form>
     </>

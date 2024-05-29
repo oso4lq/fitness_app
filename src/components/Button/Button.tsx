@@ -20,13 +20,16 @@ function handleClick(
   }
 }
 
-export function Button({ width, children, onClick }: ButtonProps) {
+export function Button({ width, children, className, onClick }: ButtonProps) {
   return (
     <button
       data-tid="styles.btn"
       onClick={(ev) => handleClick(ev, onClick)}
       style={{ width: width ? width : "100%" }}
-      className="h-[52px] rounded-large text-base font-normal leading-tight bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300"
+      className={cn(
+        className || "",
+        "h-[52px] rounded-large text-base font-normal leading-tight bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300"
+      )}
     >
       {children}
     </button>

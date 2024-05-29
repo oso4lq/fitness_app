@@ -5,9 +5,20 @@ import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
 import Routes from "@/routes";
+import { useAppDispatch } from "@/hooks";
 
 export default function SignUp() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const handleSignup = () => {
+    // dispatch(SignUp());
+    // router.back();
+  };
+
+  const onLoginClick = () => {
+    router.replace(Routes.Login);
+  };
 
   return (
     <>
@@ -35,13 +46,8 @@ export default function SignUp() {
           ></Input>
         </div>
         <div>
-          <Button>Зарегистрироваться</Button>
-          <ButtonAdditional
-            className="mt-3"
-            onClick={() => {
-              router.push(Routes.Login);
-            }}
-          >
+          <Button onClick={handleSignup}>Зарегистрироваться</Button>
+          <ButtonAdditional className="mt-3" onClick={onLoginClick}>
             Войти
           </ButtonAdditional>
         </div>

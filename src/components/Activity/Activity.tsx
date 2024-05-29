@@ -1,5 +1,4 @@
-import classNames from "classnames";
-import styles from "./Activity.module.css";
+// import classNames from "classnames";
 import Image from "next/image";
 
 export default function Activity({ courseData }: any) {

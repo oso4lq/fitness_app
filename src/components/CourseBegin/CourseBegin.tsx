@@ -1,8 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "../Button/Button";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
+import { useAppSelector } from "@/hooks";
 
 export default function CourseBegin() {
-  // logic
+  const router = useRouter();
+  const state = useAppSelector(({ user }) => user);
+
+  const onLoginClick = () => {
+    router.push(Routes.Login);
+  };
+
+  const onProfileClick = () => {
+    router.push(Routes.Profile);
+  };
 
   return (
     <div className="bg-white-base mt-[102px] mb-[100px] p-[30px] rounded-[30px] shadow-blocks flex relative">
@@ -23,10 +37,12 @@ export default function CourseBegin() {
           <li className="list-item-grey">помогают противостоять стрессам</li>
         </ul>
 
-        {/* <button>Добавить курс</button> // заменить на условное применение текста в кнопке по авторизации*/}
-        <Button>Войдите, чтобы добавить курс</Button>
+        {state.isAuthenticated ? (
+          <Button onClick={onProfileClick}>Добавить курс</Button>
+        ) : (
+          <Button onClick={onLoginClick}>Войдите, чтобы добавить курс</Button>
+        )}
       </div>
-
 
       <Image
         width={487}

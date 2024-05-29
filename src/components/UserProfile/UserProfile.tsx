@@ -1,8 +1,29 @@
+"use client";
+
 import user from "../../../public/img/icon/photo_user.svg";
 import Image from "next/image";
 import { Button, ButtonAdditional } from "../Button/Button";
+import { useState } from "react";
+import { logOut } from "@/store/features/userSlice";
+import { useAppDispatch } from "@/hooks";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
 
 export default function UserProfile() {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const onResetClick = () => {
+    router.push(Routes.ResetPass);
+    setIsOpen(false);
+  };
+
+  const onLogOutClick = () => {
+    dispatch(logOut());
+    setIsOpen(false);
+  };
+
   return (
     <>
       <h2
@@ -28,8 +49,12 @@ export default function UserProfile() {
               </p>
             </div>
             <div className="w-[394px] flex flex-wrap gap-[10px]">
-              <Button width="192px">Изменить пароль</Button>
-              <ButtonAdditional width="192px">Выйти</ButtonAdditional>
+              <Button width="192px" onClick={onResetClick}>
+                Изменить пароль
+              </Button>
+              <ButtonAdditional width="192px" onClick={onLogOutClick}>
+                Выйти
+              </ButtonAdditional>
             </div>
           </div>
         </div>

@@ -17,6 +17,10 @@ export default function LogIn() {
     router.back();
   };
 
+  const onSignupClick = () => {
+    router.replace(Routes.SignUp);
+  };
+
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
@@ -34,12 +38,7 @@ export default function LogIn() {
         </div>
         <div>
           <Button onClick={handleLogin}>Войти</Button>
-          <ButtonAdditional
-            className="mt-3"
-            onClick={() => {
-              router.push(Routes.SignUp);
-            }}
-          >
+          <ButtonAdditional className="mt-3" onClick={onSignupClick}>
             Зарегистрироваться
           </ButtonAdditional>
         </div>

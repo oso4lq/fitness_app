@@ -1,10 +1,21 @@
-"use client"
+"use client";
 
+import { useRouter } from "next/navigation";
 import { Button } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
+import Routes from "@/routes";
+import { useState } from "react";
 
 export default function ResetPass() {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onProfileClick = () => {
+    router.push(Routes.Profile);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
@@ -25,7 +36,7 @@ export default function ResetPass() {
           ></Input>
         </div>
         <div>
-          <Button>Подтвердить</Button>
+          <Button onClick={onProfileClick}>Подтвердить</Button>
         </div>
       </form>
     </>

@@ -6,7 +6,7 @@ export default function CourseCardList() {
   const usersCoursesList: CoursType[] = Object.values(data.courses);
 
   return (
-    <div className="flex flex-wrap gap-[30px]">
+    <div className="grid grid-cols-3 gap-[40px]">
       {usersCoursesList?.map((item) => {
         return <CourseCard key={item._id} courseData={item} />;
       })}

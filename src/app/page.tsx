@@ -1,10 +1,24 @@
 "use client";
+
+import Arrow from "@/components/Arrow/Arrow";
+import { Button } from "@/components/Button/Button";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
 import { useAppSelector } from "@/hooks";
+import Routes from "@/routes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onHomeClick = () => {
+    router.push(Routes.Main);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <div className="mt-14 mb-12 h-[120px] flex">
@@ -20,6 +34,12 @@ export default function Home() {
         </div>
       </div>
       <CourseCardList />
+      <div className="flex justify-center">
+        <Button className="mt-6" width="126px" onClick={onHomeClick}>
+          Наверх
+          <Arrow />
+        </Button>
+      </div>
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>

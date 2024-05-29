@@ -1,8 +1,20 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button } from "../Button/Button";
+import { useState } from "react";
+import Routes from "@/routes";
+import Check from "../Check/Check";
 
 export default function SelectWorkout() {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onWorkoutClick = () => {
+    router.push(Routes.Workout);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <div className="mb-8">
@@ -15,133 +27,16 @@ export default function SelectWorkout() {
           <div className="divide-y divide-gray-dark mr-5">
             <div className="py-3 flex items-center first:pt-0 last:pb-0">
               <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-1"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
+                <Check isChecked={true}/>
               </div>
               <div className="text-base">
-                <label htmlFor="helper-radio-1" className="font-medium">
+                <label htmlFor="helper-checkbox-1" className="font-medium">
                   <div>Утренняя практика</div>
-                  <p id="helper-radio-text-1" className="text-sm font-normal">
+                  <p
+                    id="helper-checkbox-text-1"
+                    className="text-sm font-normal"
+                  >
                     Йога на каждый день / 1 день
-                  </p>
-                </label>
-              </div>
-            </div>
-            <div className="py-3 flex items-center first:pt-0 last:pb-0">
-              <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-2"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
-              </div>
-              <div className="text-base">
-                <label htmlFor="helper-radio-2" className="font-medium">
-                  <div>Красота и здоровье</div>
-                  <p id="helper-radio-text-2" className="text-sm font-normal">
-                    Йога на каждый день / 2 день
-                  </p>
-                </label>
-              </div>
-            </div>
-            <div className="py-3 flex items-center first:pt-0 last:pb-0">
-              <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-3"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
-              </div>
-              <div className="text-base">
-                <label htmlFor="helper-radio-3" className="font-medium">
-                  <div>Асаны стоя</div>
-                  <p id="helper-radio-text-3" className="text-sm font-normal">
-                    Йога на каждый день / 3 день
-                  </p>
-                </label>
-              </div>
-            </div>
-            <div className="py-3 flex items-center first:pt-0 last:pb-0">
-              <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-4"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
-              </div>
-              <div className="text-base">
-                <label htmlFor="helper-radio-4" className="font-medium">
-                  <div>Растягиваем мышцы бедра</div>
-                  <p id="helper-radio-text-4" className="text-sm font-normal">
-                    Йога на каждый день / 4 день
-                  </p>
-                </label>
-              </div>
-            </div>
-            <div className="py-3 flex items-center first:pt-0 last:pb-0">
-              <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-5"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
-              </div>
-              <div className="text-base">
-                <label htmlFor="helper-radio-5" className="font-medium">
-                  <div>Гибкость спины</div>
-                  <p id="helper-radio-text-5" className="text-sm font-normal">
-                    Йога на каждый день / 5 день
-                  </p>
-                </label>
-              </div>
-            </div>
-            <div className="py-3 flex items-center first:pt-0 last:pb-0">
-              <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-6"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
-              </div>
-              <div className="text-base">
-                <label htmlFor="helper-radio-6" className="font-medium">
-                  <div>Сильные руки</div>
-                  <p id="helper-radio-text-6" className="text-sm font-normal">
-                    Йога на каждый день / 6 день
-                  </p>
-                </label>
-              </div>
-            </div>
-            <div className="py-3 flex items-center first:pt-0 last:pb-0">
-              <div className="flex rounded mr-2">
-                <input
-                  id="helper-radio-7"
-                  type="radio"
-                  value="training"
-                  name="training"
-                  className="w-[20px] h-[20px] text-base leading-2 text-left"
-                />
-              </div>
-              <div className="text-base">
-                <label htmlFor="helper-radio-7" className="font-medium">
-                  <div>Глубокое расслабление</div>
-                  <p id="helper-radio-text-7" className="text-sm font-normal">
-                    Йога на каждый день / 7 день
                   </p>
                 </label>
               </div>
@@ -149,7 +44,7 @@ export default function SelectWorkout() {
           </div>
         </div>
         <div>
-          <Button>Начать</Button>
+          <Button onClick={onWorkoutClick}>Начать</Button>
         </div>
       </form>
     </>

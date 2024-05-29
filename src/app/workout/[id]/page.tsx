@@ -4,12 +4,15 @@ import data from "../../../lib/data.json";
 import { Workout, WorkoutsData } from "@/types/types";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 import { Button } from "@/components/Button/Button";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
 };
 
 export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
+  const router = useRouter();
   const workoutsContent: WorkoutsData = data.workouts;
   const workoutId = params.id;
 
@@ -30,6 +33,10 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
     };
     getWorkoutData();
   }, [workoutsContent, workoutId]);
+
+  const onSaveClick = () => {
+    router.push(Routes.MyProgress);
+  };
 
   return (
     <>
@@ -114,7 +121,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 })}
               </div>
 
-              <Button width="320px">Заполнить свой прогресс</Button>
+              <Button width="320px" onClick={onSaveClick}>Заполнить свой прогресс</Button>
             </div>
           ) : (
             ""
