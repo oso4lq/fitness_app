@@ -20,15 +20,19 @@ export default function CourseCard({ courseData }: CourseCardProps) {
   const router = useRouter();
   const completionPercentage: number = 30;  //заменить на получение из backend
   const pathname = usePathname();
-  const isProfilePage = pathname === "/profile";
+  const isNotHomePage = pathname !== "/";
   const minusBtnUrl = "img/icon/minus.svg";
   const plusBtnUrl = "img/icon/plus.svg";
-  const tooltipContent = isProfilePage
+  const tooltipContent = isNotHomePage
     ? "Удалить тренировку"
     : "Добавить тренировку";
 
   const handleCoursePageOpen = () => {
     router.push(Routes.Course + "/" + courseData._id);
+  }
+
+  const handleSelectWorkoutPageOpen = () => {
+    router.push(Routes.SelectWorkout);
   }
 
   return (
@@ -50,8 +54,8 @@ export default function CourseCard({ courseData }: CourseCardProps) {
         >
           <button className="absolute top-5 right-5">
             <Image
-              src={isProfilePage ? minusBtnUrl : plusBtnUrl}
-              alt={isProfilePage ? "minusBtn" : "plusBtn"}
+              src={isNotHomePage ? minusBtnUrl : plusBtnUrl}
+              alt={isNotHomePage ? "minusBtn" : "plusBtn"}
               width={32}
               height={32}
             />
@@ -90,7 +94,7 @@ export default function CourseCard({ courseData }: CourseCardProps) {
             </p>
           </div>
         </div>
-        {isProfilePage ? (
+        {isNotHomePage ? (
           <>
             {" "}
             {/* Написать логику получения данных о проценте выполнении */}
@@ -98,7 +102,7 @@ export default function CourseCard({ courseData }: CourseCardProps) {
               <p>{`Прогресс ${completionPercentage}%`}</p>
               <ProgressBar completionPercentage={completionPercentage} />
             </div>
-            <Button>{getTextButtonProfile(completionPercentage)}</Button>
+            <Button onClick={handleSelectWorkoutPageOpen}>{getTextButtonProfile(completionPercentage)}</Button>
           </>
         ) : (
           ""
