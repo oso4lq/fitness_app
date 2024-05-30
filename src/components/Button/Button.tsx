@@ -28,7 +28,7 @@ export function Button({ width, children, className, onClick }: ButtonProps) {
       style={{ width: width ? width : "100%" }}
       className={cn(
         className || "",
-        "h-[52px] rounded-large text-base font-normal leading-tight bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300"
+        "h-[52px] rounded-large text-[18px] font-normal leading-[19.8px] bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300"
       )}
     >
       {children}

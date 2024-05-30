@@ -35,10 +35,11 @@ export default function Home() {
       </div>
       <CourseCardList />
       <div className="flex justify-center">
-        <Button className="mt-6" width="126px" onClick={onHomeClick}>
-          Наверх
-          <Arrow />
-        </Button>
+      <Button className="mt-[34px] flex justify-center items-center content-end gap-[4px]" width="126px" onClick={onHomeClick}>
+        Наверх
+        <span className="-mt-[4.5px] text-[15px] font-bold">↑</span>
+          {/* <Arrow /> */}
+      </Button>
       </div>
 
       <div className="DEVBLOCK">
