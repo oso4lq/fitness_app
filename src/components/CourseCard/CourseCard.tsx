@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import Tippy from "@tippyjs/react";
 import { Button } from "../Button/Button";
 import { getTextButtonProfile } from "@/lib/getTextButtonProfile";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
 
 // import "tippy.js/dist/tippy.css"; // Импорт CSS для Tippy.js
 
@@ -15,6 +17,7 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({ courseData }: CourseCardProps) {
+  const router = useRouter();
   const completionPercentage: number = 30;  //заменить на получение из backend
   const pathname = usePathname();
   const isProfilePage = pathname === "/profile";
@@ -24,8 +27,13 @@ export default function CourseCard({ courseData }: CourseCardProps) {
     ? "Удалить тренировку"
     : "Добавить тренировку";
 
+  const handleCoursePageOpen = () => {
+    router.push(Routes.Course + "/" + courseData._id);
+  }
+
   return (
-    <div className="w-[360px] rounded-[30px] shadow-blocks bg-white-base">
+    <div className="w-[360px] rounded-[30px] shadow-blocks bg-white-base cursor-pointer"
+    onClick={handleCoursePageOpen}>
       <div className="rounded-[30px] overflow-hidden w-[360px] h-[325px] relative">
         <Image
           src={`/img/theme_${courseData.nameEN}.svg`}
