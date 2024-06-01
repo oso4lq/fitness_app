@@ -1,7 +1,10 @@
+// src/app/layout.tsx
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Roboto } from "next/font/google";
 import { HeaderController } from "@/components/HeaderController";
+import AuthInitializer from "@/components/AuthInitializer";
 import "./globals.css";
 import ReduxProvider from "@/store/ReduxProvider";
 
@@ -25,6 +28,7 @@ export default function RootLayout({
       <ReduxProvider>
         <body className={roboto.className}>
           <HeaderController />
+          <AuthInitializer /> {/* Initialize auth state */}
           {auth}
           {children}
         </body>

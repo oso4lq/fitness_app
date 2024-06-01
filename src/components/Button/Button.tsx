@@ -16,6 +16,9 @@ function handleClick(
 ): void {
   ev.preventDefault();
   ev.stopPropagation();
+
+  console.log("Button clicked"); // debug
+  
   if (onClick) {
     onClick(ev);
   }

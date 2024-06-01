@@ -1,28 +1,37 @@
+//src/components/LogIn/LogIn.tsx
+
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebaseConfig";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
 import Routes from "@/routes";
-import { auth, signInWithEmailAndPassword } from "@/lib/firebaseConfig";
 
 export default function LogIn() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogIn = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log("LogIn Form Submitted"); // debug
+
+    setError(null);
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push(Routes.Profile);
     } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      }
+      setError((err as Error).message);
+
+      console.error("Error during log in:", err); // debug
+
     }
   };
 
@@ -44,21 +53,24 @@ export default function LogIn() {
           <Input
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder="Пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
         </div>
         {error && <p className="text-red-500">{error}</p>}
         <div>
-          <Button>Log In</Button>
+          <Button onClick={handleLogIn}>Войти</Button>
           <ButtonAdditional
             className="mt-3"
             onClick={() => {
+
+              console.log("Navigate to SignUp Clicked"); // debug
+
               router.push(Routes.SignUp);
             }}
           >
-            Sign Up
+            Зарегистрироваться
           </ButtonAdditional>
         </div>
       </form>
