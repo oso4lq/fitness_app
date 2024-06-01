@@ -2,8 +2,13 @@
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
 import { useAppSelector } from "@/hooks";
 import Link from "next/link";
+import { useEffect } from "react";
+import writeCoursesData from "@/lib/writeNewDB"
 
 export default function Home() {
+
+  useEffect(() => { writeCoursesData() }, [])
+
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   return (
     <>
