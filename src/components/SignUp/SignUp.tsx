@@ -1,10 +1,11 @@
-//src/components/SignUp/SignUp.tsx
+// src/components/SignUp/SignUp.tsx
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "@/lib/firebaseConfig";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
@@ -30,13 +31,19 @@ export default function SignUp() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Initialize user document in Firestore
+      //@ts-ignore
+      await setDoc(doc(db, "users", user.uid), {
+        pickedCourses: [],
+      });
+
       router.push(Routes.Profile);
     } catch (err) {
       setError((err as Error).message);
-
       console.error("Error during sign up:", err); // debug
-
     }
   };
 
@@ -77,9 +84,7 @@ export default function SignUp() {
           <ButtonAdditional
             className="mt-3"
             onClick={() => {
-              
               console.log("Navigate to Login Clicked"); // debug
-
               router.push(Routes.Login);
             }}
           >

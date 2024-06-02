@@ -1,35 +1,44 @@
-// src/app/page.tsx
 "use client";
 import { useEffect, useState } from "react";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
-import { CoursType } from "@/types/types";
+import { useAppSelector } from "@/hooks";
 import Link from "next/link";
+import { getDatabase, ref, get } from "firebase/database";
+import { db } from "@/lib/firebaseConfig";
 
 export default function Home() {
-  const [courses, setCourses] = useState<CoursType[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState([]);
+  const [pickedCourses, setPickedCourses] = useState([]);
+  const user = useAppSelector((state) => state.user.user);
 
   useEffect(() => {
     const fetchCourses = async () => {
-      try {
-        const response = await fetch(
-          "https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app/courses.json"
-        );
-        const data = await response.json();
-        const coursesArray = Object.keys(data).map((key) => ({
-          ...data[key],
-          _id: key,
-        }));
-        setCourses(coursesArray);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      } finally {
-        setLoading(false);
+      const dbRef = ref(db, "courses");
+      const snapshot = await get(dbRef);
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        setCourses(Object.values(data));
+      } else {
+        console.error("No data available");
+      }
+    };
+
+    const fetchPickedCourses = async () => {
+      if (user) {
+        const userRef = ref(db, `users/${user.uid}`);
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          setPickedCourses(data.pickedCourses || []);
+        } else {
+          console.error("No data available for user");
+        }
       }
     };
 
     fetchCourses();
-  }, []);
+    fetchPickedCourses();
+  }, [user]);
 
   return (
     <>
@@ -45,11 +54,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <CourseCardList courses={courses} />
-      )}
+      <CourseCardList courses={courses} pickedCourses={pickedCourses} />
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>
