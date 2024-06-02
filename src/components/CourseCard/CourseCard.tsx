@@ -1,3 +1,4 @@
+// src/components/CourseCard/CourseCard.tsx
 "use client";
 
 import Image from "next/image";
@@ -8,21 +9,17 @@ import Tippy from "@tippyjs/react";
 import { Button } from "../Button/Button";
 import { getTextButtonProfile } from "@/lib/getTextButtonProfile";
 
-// import "tippy.js/dist/tippy.css"; // Импорт CSS для Tippy.js
-
 interface CourseCardProps {
   courseData: CoursType;
 }
 
 export default function CourseCard({ courseData }: CourseCardProps) {
-  const completionPercentage: number = 30;  //заменить на получение из backend
+  const completionPercentage: number = 30;  // Placeholder for the completion percentage logic
   const pathname = usePathname();
   const isProfilePage = pathname === "/profile";
   const minusBtnUrl = "img/icon/minus.svg";
   const plusBtnUrl = "img/icon/plus.svg";
-  const tooltipContent = isProfilePage
-    ? "Удалить тренировку"
-    : "Добавить тренировку";
+  const tooltipContent = isProfilePage ? "Удалить тренировку" : "Добавить тренировку";
 
   return (
     <div className="w-[360px] rounded-[30px] shadow-blocks bg-white-base">
@@ -84,17 +81,13 @@ export default function CourseCard({ courseData }: CourseCardProps) {
         </div>
         {isProfilePage ? (
           <>
-            {" "}
-            {/* Написать логику получения данных о проценте выполнении */}
             <div className="mb-[40px]">
               <p>{`Прогресс ${completionPercentage}%`}</p>
               <ProgressBar completionPercentage={completionPercentage} />
             </div>
             <Button>{getTextButtonProfile(completionPercentage)}</Button>
           </>
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
     </div>
   );

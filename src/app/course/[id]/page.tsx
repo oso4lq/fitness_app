@@ -1,3 +1,4 @@
+// src/app/course/[id]/page.tsx
 "use client";
 
 import CourseLayout from "@/app/course/layout";

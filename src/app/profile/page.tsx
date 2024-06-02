@@ -17,7 +17,7 @@ export default function ProfilePage() {
         >
           Мои курсы
         </h2>
-        <CourseCardList />
+        {/* <CourseCardList /> */}
       </div>
     </PrivateRoute>
   );

@@ -1,15 +1,36 @@
+// src/app/page.tsx
 "use client";
+import { useEffect, useState } from "react";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
-import { useAppSelector } from "@/hooks";
+import { CoursType } from "@/types/types";
 import Link from "next/link";
-import { useEffect } from "react";
-import writeCoursesData from "@/lib/writeNewDB"
 
 export default function Home() {
+  const [courses, setCourses] = useState<CoursType[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { writeCoursesData() }, [])
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch(
+          "https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app/courses.json"
+        );
+        const data = await response.json();
+        const coursesArray = Object.keys(data).map((key) => ({
+          ...data[key],
+          _id: key,
+        }));
+        setCourses(coursesArray);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+    fetchCourses();
+  }, []);
+
   return (
     <>
       <div className="mt-14 mb-12 h-[120px] flex">
@@ -24,7 +45,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <CourseCardList />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <CourseCardList courses={courses} />
+      )}
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>

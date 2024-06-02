@@ -1,6 +1,7 @@
 // src/store/features/userSlice.ts
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "@/lib/firebaseConfig";
+import { signInWithEmailAndPassword, signOut, onAuthStateChanged, User } from "firebase/auth";
 import { AppDispatch } from "../store";
 
 interface UserState {
@@ -21,7 +22,6 @@ export const logInUser = createAsyncThunk(
   "user/logInUser",
   async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       return userCredential.user;
     } catch (error: any) {
@@ -32,7 +32,6 @@ export const logInUser = createAsyncThunk(
 
 export const logOutUser = createAsyncThunk("user/logOutUser", async (_, { rejectWithValue }) => {
   try {
-    const auth = getAuth();
     await signOut(auth);
   } catch (error: any) {
     return rejectWithValue(error.message);
@@ -78,7 +77,6 @@ const userSlice = createSlice({
 export const { setUser } = userSlice.actions;
 
 export const initializeAuthListener = () => (dispatch: AppDispatch) => {
-  const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       dispatch(setUser(user));
