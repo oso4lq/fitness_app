@@ -1,3 +1,24 @@
+import { FirebaseError } from "firebase/app";
+
+export type NetworkError = {
+  code: string;
+  message?: string;
+};
+
+export function errorFromGeneric(genericError: any): NetworkError {
+  return {
+    code: "error/generic",
+    message: String(genericError),
+  };
+}
+
+export function errorFromFirebase(firebaseError: FirebaseError): NetworkError {
+  return {
+    code: firebaseError.code,
+    message: firebaseError.message,
+  };
+}
+
 export type Exercise = {
   name: string;
   quantity: number;
@@ -27,4 +48,4 @@ export type CoursType = {
 
 export type CoursesDataType = {
   [key: string]: CoursType;
-}
+};

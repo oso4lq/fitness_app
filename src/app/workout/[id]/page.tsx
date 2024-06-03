@@ -1,6 +1,7 @@
+// src/app/workout/[id]/page.tsx
 "use client";
+
 import { useEffect, useState } from "react";
-import data from "../../../lib/data.json";
 import { Workout, WorkoutsData } from "@/types/types";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 import { Button } from "@/components/Button/Button";
@@ -10,7 +11,6 @@ type WorkoutVideoPageProps = {
 };
 
 export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
-  const workoutsContent: WorkoutsData = data.workouts;
   const workoutId = params.id;
 
   const [workoutData, setWorkoutData] = useState<Workout | null>(null);
@@ -18,18 +18,15 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
   useEffect(() => {
     const getWorkoutData = async () => {
       try {
-        const workout = workoutsContent[workoutId];
-        if (workout) {
-          setWorkoutData(workout);
-        } else {
-          console.error("Workout not found");
-        }
+        const response = await fetch(`https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app/workouts/${workoutId}.json`);
+        const data = await response.json();
+        setWorkoutData(data);
       } catch (error) {
         console.error("Error fetching workout data:", error);
       }
     };
     getWorkoutData();
-  }, [workoutsContent, workoutId]);
+  }, [workoutId]);
 
   return (
     <>
@@ -48,7 +45,6 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
             {workoutData.name}
           </p>
 
-          {/* выбрать что оставить либо iframe либо video */}
           <div
             data-tid="videoContainer"
             className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9 rounded"
@@ -60,12 +56,6 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             />
-            {/* <video
-              data-tid="videoContainer" className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9"
-              src={workoutData.video}
-              controls
-              poster=""
-            /> */}
           </div>
 
           {workoutData.exercises ? (
@@ -86,9 +76,9 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 className="mt-5 mb-10 flex flex-wrap items-end gap-y-[20px] gap-x-[60px]"
               >
                 {workoutData.exercises?.map((item, index) => {
-                  const currentProgress = 5; //заглушка для рендера, поменять логику на получение из инпута
+                  const currentProgress = 5; // заглушка для рендера, поменять логику на получение из инпута
                   const completionPercentage =
-                  Math.round((currentProgress / item.quantity) * 100);
+                    Math.round((currentProgress / item.quantity) * 100);
                   const nameExerciseUpgrate: string = item.name.replace(
                     /\(\d+ повторений\)/,
                     `${completionPercentage}%`
