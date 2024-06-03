@@ -1,36 +1,30 @@
-//src/components/LogIn/LogIn.tsx
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebaseConfig";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
 import Logo from "../Logo/Logo";
 import Routes from "@/routes";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { logInUser } from "@/store/features/userSlice";
+import Link from "next/link";
 
 export default function LogIn() {
   const router = useRouter();
+
+  const dispatch = useAppDispatch();
+  const { isCredentialsInvalid, genericError, isAuthenticated } =
+    useAppSelector((state) => state.user);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
 
-  const handleLogIn = async (e: React.FormEvent) => {
+  const handleLogIn = (e: React.FormEvent) => {
     e.preventDefault();
-
-    console.log("LogIn Form Submitted"); // debug
-
-    setError(null);
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push(Routes.Profile);
-    } catch (err) {
-      setError((err as Error).message);
-
-      console.error("Error during log in:", err); // debug
-
+    dispatch(logInUser({ email, password }));
+    if (isAuthenticated) {
+      router.back();
     }
   };
 
@@ -39,7 +33,7 @@ export default function LogIn() {
       <div className="mb-12 flex justify-center items-center">
         <Logo></Logo>
       </div>
-      <form onSubmit={handleLogIn}>
+      <form>
         <div className="mb-8">
           <Input
             className="mb-2.5"
@@ -50,6 +44,7 @@ export default function LogIn() {
             onChange={(e) => setEmail(e.target.value)}
           ></Input>
           <Input
+            className={isCredentialsInvalid ? "border-error" : ""}
             name="password"
             type="password"
             placeholder="Пароль"
@@ -57,13 +52,27 @@ export default function LogIn() {
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
         </div>
-        {error && <p className="text-red-500">{error}</p>}
+        {isCredentialsInvalid && (
+          <div className="text-error text-sm mb-8 text-center">
+            Пароль введен неверно, попробуйте еще раз.&nbsp;
+            <Link
+              href={"/reset-pass-mail/"}
+              className="underline decoration-error"
+            >
+              Восстановить пароль?
+            </Link>
+          </div>
+        )}
+        {genericError && (
+          <div className="text-error text-sm mb-8 text-center">
+            Что-то пошло не так!
+          </div>
+        )}
         <div>
           <Button onClick={handleLogIn}>Войти</Button>
           <ButtonAdditional
             className="mt-3"
             onClick={() => {
-
               console.log("Navigate to SignUp Clicked"); // debug
 
               router.push(Routes.SignUp);

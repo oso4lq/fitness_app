@@ -53,7 +53,7 @@ p {
   }
 
   .speech-bubble {
-    --bbColor: #c6ff00;
+    --bbColor: #BCEC30;
     --bbArrowSize: 22px;
     background: var(--bbColor);
     margin-bottom: var(--bbArrowSize);

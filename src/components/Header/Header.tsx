@@ -1,47 +1,52 @@
-// src/components/Header/Header.tsx
 "use client";
 
 import { useState } from "react";
-import classNames from "classnames";
-import styles from "./Header.module.css";
 import Link from "next/link";
 import Logo from "../Logo/Logo";
 import Image from "next/image";
-import { useAppSelector, useAppDispatch } from "@/hooks";
 import { logOutUser } from "@/store/features/userSlice";
 import { useRouter } from "next/navigation";
+import { Button, ButtonAdditional } from "../Button/Button";
+import { useAppDispatch, useAppSelector, useOutsideClick } from "@/hooks";
+import Routes from "@/routes";
 
 export default function Header() {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
-  const user = useAppSelector((state) => state.user.user);
+  const { name, email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useOutsideClick(() => setIsOpen(false));
 
   const handleLogout = async () => {
     await dispatch(logOutUser());
-    router.push("/");
+    router.replace("/");
+  };
+
+  const onLoginClick = () => {
+    router.push(Routes.Login);
+  };
+
+  const onProfileClick = () => {
+    router.push(Routes.Profile);
+    setIsOpen(false);
   };
 
   return (
-    <div className={styles.header}>
-      <div className={styles.header__title}>
-        <Link href={"/"}>
-          <Logo />
-        </Link>
-        <p className="opacity-60">Онлайн-тренировки для занятий дома</p>
+    <div className="flex justify-between">
+      <div>
+        <div>
+          <Link href={"/"}>
+            <Logo />
+            <div className="text-lg opacity-60">
+              Онлайн-тренировки для занятий дома
+            </div>
+          </Link>
+        </div>
       </div>
-
-      <div className={styles.funcs}>
-        {!isAuthenticated ? (
-          <button
-            className={styles.funcs__btn}
-            onClick={() => router.push("/login")}
-          >
-            Войти
-          </button>
-        ) : (
-          <div className={styles.funcs__user}>
+      <div className="flex items-center">
+        {isAuthenticated ? (
+          <div className="flex">
             <Image
               className="w-12 h-12"
               src="/img/icon/user.svg"
@@ -49,23 +54,45 @@ export default function Header() {
               width={48}
               height={48}
             />
-            <p>{user?.email}</p>
-            <Image
-              className="w-3 h-2"
-              src="/img/icon/button_user.svg"
-              alt="button_user_img"
-              width={12}
-              height={8}
-              onClick={() => setDropdownVisible(!dropdownVisible)}
-              style={{ cursor: "pointer" }}
-            />
-            {dropdownVisible && (
-              <div className={styles.dropdown}>
-                <p>{user?.email}</p>
-                <button onClick={handleLogout}>Выйти</button>
-              </div>
-            )}
+            <div
+              className="flex items-center ml-4 cursor-pointer relative"
+              onClick={() => {
+                setIsOpen((val) => !val);
+              }}
+            >
+              <div>{name}</div>
+              <Image
+                className="w-3 h-2 ml-3"
+                src="/img/icon/button_user.svg"
+                alt="button_user_img"
+                width={12}
+                height={8}
+              />
+              {isOpen && (
+                <div
+                  ref={ref}
+                  className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] right-0"
+                >
+                  <div className="mb-8">
+                    <div className="text-lg text-center">{name}</div>
+                    <div className="text-lg text-center opacity-60">
+                      {email}
+                    </div>
+                  </div>
+                  <div>
+                    <Button onClick={onProfileClick}>Мой профиль</Button>
+                    <ButtonAdditional onClick={handleLogout} className="mt-3">
+                      Выйти
+                    </ButtonAdditional>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
+        ) : (
+          <Button width="102px" onClick={onLoginClick}>
+            Войти
+          </Button>
         )}
       </div>
     </div>
