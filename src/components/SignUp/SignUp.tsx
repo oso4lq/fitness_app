@@ -82,7 +82,7 @@ export default function SignUp() {
             className="mt-3"
             onClick={() => {
               console.log("Navigate to Login Clicked"); // debug
-              router.push(Routes.Login);
+              router.replace(Routes.Login);
             }}
           >
             Войти
