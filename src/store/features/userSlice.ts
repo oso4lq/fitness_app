@@ -7,6 +7,10 @@ import {
   User,
   AuthErrorCodes,
   createUserWithEmailAndPassword,
+  updatePassword,
+  reauthenticateWithCredential,
+  AuthCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 import { AppDispatch } from "../store";
 import { FirebaseError } from "firebase/app";
@@ -120,6 +124,34 @@ export const logOutUser = createAsyncThunk(
   }
 );
 
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (
+    { oldPassword, password }: { oldPassword: string; password: string },
+    { rejectWithValue }
+  ) => {
+    const user = auth.currentUser!;
+    try {
+      await updatePassword(user, password);
+      return;
+    } catch (error: any) {
+      if (error instanceof FirebaseError) {
+        if (error.code === AuthErrorCodes.CREDENTIAL_TOO_OLD_LOGIN_AGAIN) {
+          const credential = EmailAuthProvider.credential(
+            user.email!,
+            oldPassword
+          );
+          await reauthenticateWithCredential(user, credential);
+          await updatePassword(user, password);
+        }
+        return rejectWithValue(errorFromFirebase(error));
+      } else {
+        return rejectWithValue(errorFromGeneric(error));
+      }
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -207,7 +239,11 @@ const userSlice = createSlice({
           console.log("Generic error while login", action.payload);
           state.genericError = action.payload;
         }
-      );
+      )
+      .addCase(changePassword.rejected, (state, action) => {
+        console.log(action.error);
+        console.log(action);
+      });
   },
 });
 

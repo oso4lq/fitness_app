@@ -1,11 +1,8 @@
 // src/components/UserProfile/UserProfile.tsx
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { updatePassword } from "firebase/auth";
-import { useAppSelector, useAppDispatch } from "@/hooks";
-import { auth } from "@/lib/firebaseConfig";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import Image from "next/image";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Routes from "@/routes";
@@ -14,32 +11,15 @@ import { logOutUser } from "@/store/features/userSlice";
 export default function UserProfile() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const currentUser = auth.currentUser;
-  const [newPassword, setNewPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const { email } = useAppSelector((state) => state.user);
 
-  const handleChangePassword = async () => {
-    if (!currentUser) {
-      setError("User not authenticated");
-      return;
-    }
-
-    try {
-      await updatePassword(currentUser, newPassword);
-      setNewPassword("");
-      alert("Password updated successfully");
-    } catch (err) {
-      setError((err as Error).message);
-    }
+  const handleChangePassword = () => {
+    router.push(Routes.ResetPass);
   };
 
-  const handleLogout = async () => {
-    try {
-      await dispatch(logOutUser());
-      router.push(Routes.Main);
-    } catch (err) {
-      setError((err as Error).message);
-    }
+  const handleLogout = () => {
+    dispatch(logOutUser());
+    router.push(Routes.Main);
   };
 
   return (
@@ -59,22 +39,16 @@ export default function UserProfile() {
             height={197}
             width={197}
             alt="photo_user"
-            src={currentUser ? "/img/icon/USER_PHOTO.svg" : "/img/icon/photo_user.svg"}
+            src="/img/icon/photo_user.svg"
           />
           <div data-tid="userData" className="flex flex-col gap-[30px]">
-            <h3 className="text-[32px] font-medium leading-[35px]">{currentUser?.email}</h3>
+            <h3 className="text-[32px] font-medium leading-[35px]">
+              {email?.split("@")[0]}
+            </h3>
             <div className="">
               <p className="mb-[10px] text-[18px] font-normal leading-[19px]">
-                Логин: {currentUser?.email}
+                Логин: {email}
               </p>
-              <div className="mb-[10px] text-[18px] font-normal leading-[19px]">
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </div>
             </div>
             <div className="w-[394px] flex flex-wrap gap-[10px]">
               <Button width="192px" onClick={handleChangePassword}>
@@ -84,7 +58,6 @@ export default function UserProfile() {
                 Выйти
               </ButtonAdditional>
             </div>
-            {error && <p className="text-red-500">{error}</p>}
           </div>
         </div>
       </div>

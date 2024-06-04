@@ -60,7 +60,7 @@ export default function Header() {
                 setIsOpen((val) => !val);
               }}
             >
-              <div>{name}</div>
+              <div>{email?.split("@")[0]}</div>
               <Image
                 className="w-3 h-2 ml-3"
                 src="/img/icon/button_user.svg"
@@ -74,7 +74,7 @@ export default function Header() {
                   className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] right-0"
                 >
                   <div className="mb-8">
-                    <div className="text-lg text-center">{name}</div>
+                    <div className="text-lg text-center">{email?.split("@")[0]}</div>
                     <div className="text-lg text-center opacity-60">
                       {email}
                     </div>
