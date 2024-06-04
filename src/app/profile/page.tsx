@@ -11,13 +11,16 @@ import { db } from "@/lib/firebaseConfig";
 export default function ProfilePage() {
   const [pickedCourses, setPickedCourses] = useState([]);
   const [courses, setCourses] = useState([]);
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user);
+  const userUid = useAppSelector((state) => state.user.uid);
+  console.log(userUid);
 
   useEffect(() => {
     const fetchPickedCourses = async () => {
       if (user) {
         const userRef = ref(db, `users/${user.uid}`);
         const snapshot = await get(userRef);
+        console.log(snapshot);
         if (snapshot.exists()) {
           const data = snapshot.val();
           setPickedCourses(data.pickedCourses || []);

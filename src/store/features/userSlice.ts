@@ -24,18 +24,21 @@ interface UserState {
   loading: boolean;
   name: string | null;
   email: string | null;
+  uid: string | null;
 }
 
 interface SetUserPayload {
   isAuthenticated: boolean;
   name: string | null;
   email: string | null;
+  uid: string | null;
 }
 
 const emptyAuth: SetUserPayload = {
   isAuthenticated: false,
   name: null,
   email: null,
+  uid: null,
 };
 
 const initialState: UserState = {
@@ -46,6 +49,7 @@ const initialState: UserState = {
   genericError: null,
   name: null,
   email: null,
+  uid: null,
 };
 
 export const logInUser = createAsyncThunk(
@@ -60,10 +64,12 @@ export const logInUser = createAsyncThunk(
         email,
         password
       );
+      console.log(userCredential.user.uid);
       return {
         isAuthenticated: true,
         name: userCredential.user.displayName,
         email: userCredential.user.email,
+        uid: userCredential.user.uid,
       };
     } catch (error: any) {
       if (error instanceof FirebaseError) {
@@ -91,6 +97,7 @@ export const signUpUser = createAsyncThunk(
         isAuthenticated: true,
         name: userCredential.user.displayName,
         email: userCredential.user.email,
+        uid: userCredential.user.uid,
       };
     } catch (error: any) {
       if (error instanceof FirebaseError) {
@@ -123,6 +130,7 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.isAuthenticated = action.payload.isAuthenticated;
+        state.uid = action.payload.uid;
       }
     },
   },
@@ -140,6 +148,7 @@ const userSlice = createSlice({
           state.isAuthenticated = true;
           state.name = action.payload.name;
           state.email = action.payload.email;
+          state.uid = action.payload.uid;
         }
       )
       //@ts-ignore
@@ -167,6 +176,7 @@ const userSlice = createSlice({
           state.isAuthenticated = true;
           state.name = action.payload.name;
           state.email = action.payload.email;
+          state.uid = action.payload.uid;
         }
       )
       //@ts-ignore
@@ -188,6 +198,7 @@ const userSlice = createSlice({
         state.email = null;
         state.genericError = null;
         state.isCredentialsInvalid = false;
+        state.uid = null;
       })
       //@ts-ignore
       .addCase(
@@ -210,6 +221,7 @@ export const initializeAuthListener = () => (dispatch: AppDispatch) => {
           isAuthenticated: true,
           name: user.displayName,
           email: user.email,
+          uid: user.uid,
         })
       );
     } else {
