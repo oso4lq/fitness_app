@@ -6,14 +6,11 @@ import CourseCardList from "@/components/CourseCardList/CourseCardList";
 import Routes from "@/routes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  // const [isOpen, setIsOpen] = useState(false);
   const onHomeClick = () => {
     router.push(Routes.Main);
-    // setIsOpen(false);
   };
 
   return (

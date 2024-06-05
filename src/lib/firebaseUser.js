@@ -3,6 +3,7 @@ import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get, set, update } from "firebase/database";
 import { auth, db } from "./firebaseConfig";
 
+
 export const addPickedCourse = async (courseId) => {
   const user = auth.currentUser;
   if (user) {
@@ -37,6 +38,20 @@ export const removePickedCourse = async (courseId) => {
       update(userRef, {
         pickedCourses: pickedCourses.filter((id) => id !== courseId),
       });
+    }
+  }
+};
+
+export const fetchPickedIDsCourses = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    const userRef = ref(db, `users/${user.uid}`);
+    const snapshot = await get(userRef);
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      return (data.pickedCourses || []);
+    } else {
+      console.error("No data available for user");
     }
   }
 };

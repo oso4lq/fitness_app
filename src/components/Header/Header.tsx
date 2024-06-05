@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import { useAppDispatch, useAppSelector, useOutsideClick } from "@/hooks";
 import Routes from "@/routes";
+import { setPickedIDsCourses } from "@/store/features/coursesSlice";
 
 export default function Header() {
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
@@ -20,6 +21,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     await dispatch(logOutUser());
+    dispatch(setPickedIDsCourses([]));
     router.replace("/");
   };
 

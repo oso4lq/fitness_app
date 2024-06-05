@@ -68,7 +68,6 @@ export const logInUser = createAsyncThunk(
         email,
         password
       );
-      console.log(userCredential.user.uid);
       return {
         isAuthenticated: true,
         name: userCredential.user.displayName,

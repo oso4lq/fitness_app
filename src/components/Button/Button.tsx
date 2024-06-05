@@ -1,6 +1,5 @@
 "use client";
 
-import classNames from "classnames";
 import cn from "classnames";
 
 interface ButtonProps {
@@ -19,20 +18,28 @@ function handleClick(
   ev.stopPropagation();
 
   console.log("Button clicked"); // debug
-  
+
   if (onClick) {
     onClick(ev);
   }
 }
 
-export function Button({ width, children, onClick, disabled, className }: ButtonProps) {
+export function Button({
+  width,
+  children,
+  onClick,
+  disabled,
+  className,
+}: ButtonProps) {
   return (
     <button
       data-tid="styles.btn"
       onClick={(ev) => handleClick(ev, onClick)}
       style={{ width: width ? width : "100%" }}
       className={cn(
-        className || "", "h-[52px] rounded-large text-[18px] font-normal leading-[19.8px] bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300")}
+        className || "",
+        "h-[52px] rounded-large text-[18px] font-normal leading-[19.8px] bg-green-dark hover:bg-green-light active:bg-black-base active:text-white-base disabled:bg-gray-light disabled:text-gray-dark transition-colors duration-300"
+      )}
       disabled={disabled}
     >
       {children}

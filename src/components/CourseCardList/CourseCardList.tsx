@@ -5,18 +5,23 @@
 import { useEffect, useState } from "react";
 import CourseCard from "../CourseCard/CourseCard";
 import { CoursType } from "@/types/types";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { ref, get } from "firebase/database";
 import { db } from "@/lib/firebaseConfig";
 import { usePathname } from "next/navigation";
-
+import { setPickedIDsCourses } from "@/store/features/coursesSlice";
+import Routes from "@/routes";
 
 export default function CourseCardList() {
   const [courses, setCourses] = useState([]);
-  const [pickedCourses, setPickedCourses] = useState<string[]>([]);
   const user = useAppSelector((state) => state.user);
+  const pickedIDsCourses = useAppSelector(
+    (state) => state.usersCourses.pickedIDsCourses
+  );
+
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  const isProfilePage = pathname === Routes.Profile;
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -36,7 +41,7 @@ export default function CourseCardList() {
         const snapshot = await get(userRef);
         if (snapshot.exists()) {
           const data = snapshot.val();
-          setPickedCourses(data.pickedCourses || []);
+          dispatch(setPickedIDsCourses(data.pickedCourses || []));
         } else {
           console.error("No data available for user");
         }
@@ -44,27 +49,26 @@ export default function CourseCardList() {
     };
 
     fetchCourses();
+    // fetchPickedCourses();
     if (user) {
       fetchPickedCourses();
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   const pickedCoursesData: CoursType[] = courses.filter((course: CoursType) =>
-    pickedCourses.includes(course._id)
+    pickedIDsCourses.includes(course._id)
   );
 
   return (
     <div className="flex flex-wrap gap-[30px]">
-      {(isHomePage ? courses : pickedCoursesData).map(
-        (course: CoursType) => (
-          <CourseCard
-            key={course._id}
-            courseData={course}
-            isPicked={pickedCourses.includes(course._id)}
-            isHomePage={isHomePage}
-          />
-        )
-      )}
+      {(isProfilePage ? pickedCoursesData : courses).map((course: CoursType) => (
+        <CourseCard
+          key={course._id}
+          courseData={course}
+          isPicked={pickedIDsCourses.includes(course._id)}
+          isProfilePage={isProfilePage}
+        />
+      ))}
     </div>
   );
 }

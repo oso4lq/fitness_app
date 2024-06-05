@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "./features/userSlice";
+import { usersCoursesReducer } from "./features/coursesSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: combineReducers({
       user: userReducer,
+      usersCourses: usersCoursesReducer,
     }),
   });
 };

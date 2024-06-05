@@ -49,3 +49,7 @@ export type CoursType = {
 export type CoursesDataType = {
   [key: string]: CoursType;
 };
+
+export type CoursesStateType = {
+  pickedIDsCourses: string[];
+}
