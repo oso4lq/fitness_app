@@ -55,13 +55,16 @@ export default function CourseCardList() {
     }
   }, [user, dispatch]);
 
-  const pickedCoursesData: CoursType[] = courses.filter((course: CoursType) =>
-    pickedIDsCourses.includes(course._id)
-  );
+  const pickedCourses: CoursType[] = pickedIDsCourses.length
+    ? courses.filter((course: CoursType) =>
+        pickedIDsCourses.includes(course._id)
+      )
+    : [];
+  const coursesForRender = isProfilePage ? pickedCourses : courses;
 
   return (
     <div className="flex flex-wrap gap-[30px]">
-      {(isProfilePage ? pickedCoursesData : courses).map((course: CoursType) => (
+      {coursesForRender.map((course: CoursType) => (
         <CourseCard
           key={course._id}
           courseData={course}
@@ -69,6 +72,13 @@ export default function CourseCardList() {
           isProfilePage={isProfilePage}
         />
       ))}
+      {isProfilePage && !coursesForRender.length && (
+        <div className="text-[35px] my-[5%] mx-[25%]">
+          у вас нет выбранных курсов
+        </div>
+      )}
     </div>
   );
 }
+
+// style={{ fontSize: "35px", margin: "10% 25%" }}
