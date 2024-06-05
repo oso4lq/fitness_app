@@ -15,31 +15,36 @@ import Tippy from "@tippyjs/react";
 interface CourseCardProps {
   courseData: CoursType;
   isPicked: boolean;
+  isHomePage: boolean;
 }
 
-export default function CourseCard({ courseData, isPicked }: CourseCardProps) {
+export default function CourseCard({
+  courseData,
+  isPicked,
+  isHomePage,
+}: CourseCardProps) {
   console.log(isPicked);
   const [picked, setPicked] = useState(isPicked);
 
-  const handlePickCourse = async () => {
+  const handlePickCourse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     await addPickedCourse(courseData._id);
     setPicked(true);
   };
 
-  const handleRemoveCourse = async () => {
+  const handleRemoveCourse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     await removePickedCourse(courseData._id);
     setPicked(false);
   };
 
   const router = useRouter();
   const completionPercentage: number = 30; //заменить на получение из backend
-  const pathname = usePathname();
-  const isNotHomePage = pathname !== "/";
+  // const pathname = usePathname(); //перенести в проп
+  // const isNotHomePage = pathname !== "/";
   const minusBtnUrl = "img/icon/minus.svg";
   const plusBtnUrl = "img/icon/plus.svg";
-  const tooltipContent = isPicked
-    ? "Удалить курс"
-    : "Добавить курс";
+  const tooltipContent = isPicked ? "Удалить курс" : "Добавить курс";
 
   const handleCoursePageOpen = () => {
     router.push(Routes.Course + "/" + courseData._id);
@@ -113,7 +118,7 @@ export default function CourseCard({ courseData, isPicked }: CourseCardProps) {
             </p>
           </div>
         </div>
-        {isNotHomePage ? (
+        {!isHomePage && (
           <>
             {" "}
             {/* Написать логику получения данных о проценте выполнении */}
@@ -121,10 +126,10 @@ export default function CourseCard({ courseData, isPicked }: CourseCardProps) {
               <p>{`Прогресс ${completionPercentage}%`}</p>
               <ProgressBar completionPercentage={completionPercentage} />
             </div>
-            <Button onClick={handleSelectWorkoutPageOpen}>{getTextButtonProfile(completionPercentage)}</Button>
+            <Button onClick={handleSelectWorkoutPageOpen}>
+              {getTextButtonProfile(completionPercentage)}
+            </Button>
           </>
-        ) : (
-          ""
         )}
       </div>
     </div>

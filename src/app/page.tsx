@@ -1,46 +1,7 @@
-"use client";
-import { useEffect, useState } from "react";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
-import { useAppSelector } from "@/hooks";
 import Link from "next/link";
-import { getDatabase, ref, get } from "firebase/database";
-import { db } from "@/lib/firebaseConfig";
 
 export default function Home() {
-  const [courses, setCourses] = useState([]);
-  const [pickedCourses, setPickedCourses] = useState([]);
-  const user = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      const dbRef = ref(db, "courses");
-      const snapshot = await get(dbRef);
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        setCourses(Object.values(data));
-      } else {
-        console.error("No data available");
-      }
-    };
-
-    const fetchPickedCourses = async () => {
-      if (user) {
-        const userRef = ref(db, `users/${user.uid}`);
-        const snapshot = await get(userRef);
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setPickedCourses(data.pickedCourses || []);
-        } else {
-          console.error("No data available for user");
-        }
-      }
-    };
-
-    fetchCourses();
-    fetchPickedCourses();
-  }, [user]);
-
-  console.log(pickedCourses);
 
   return (
     <>
@@ -56,7 +17,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <CourseCardList courses={courses} pickedCourses={pickedCourses} />
+      <CourseCardList  />
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>
