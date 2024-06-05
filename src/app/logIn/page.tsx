@@ -2,6 +2,6 @@
 
 import LogIn from "@/components/LogIn/LogIn";
 
-export default function LogInPage() {
-  return <LogIn />;
+export default function LoginPage() {
+  return <LogIn></LogIn>;
 }

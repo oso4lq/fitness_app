@@ -28,8 +28,9 @@ export default function ResetPass({
     if (verificationCode) {
       console.log("Reset password scenario");
     } else {
-      dispatch(changePassword({ oldPassword, password }));
-      router.back();
+      dispatch(changePassword({ oldPassword, password })).then(() => {
+        router.back();
+      });
     }
   };
 

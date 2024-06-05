@@ -12,17 +12,18 @@ import Routes from "@/routes";
 import { setPickedIDsCourses } from "@/store/features/coursesSlice";
 
 export default function Header() {
-  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
-  const { name, email } = useAppSelector((state) => state.user);
+  const { isAuthenticated, email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
 
-  const handleLogout = async () => {
-    await dispatch(logOutUser());
-    dispatch(setPickedIDsCourses([]));
-    router.replace("/");
+  const handleLogout = () => {
+    dispatch(logOutUser()).then(() => {
+      setIsOpen(false);
+      dispatch(setPickedIDsCourses([]));
+      router.replace("/");
+    });
   };
 
   const onLoginClick = () => {
@@ -30,8 +31,8 @@ export default function Header() {
   };
 
   const onProfileClick = () => {
-    router.push(Routes.Profile);
     setIsOpen(false);
+    router.push(Routes.Profile);
   };
 
   return (
@@ -76,7 +77,9 @@ export default function Header() {
                   className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] right-0"
                 >
                   <div className="mb-8">
-                    <div className="text-lg text-center">{email?.split("@")[0]}</div>
+                    <div className="text-lg text-center">
+                      {email?.split("@")[0]}
+                    </div>
                     <div className="text-lg text-center opacity-60">
                       {email}
                     </div>

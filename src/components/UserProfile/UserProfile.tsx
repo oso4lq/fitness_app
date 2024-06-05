@@ -19,9 +19,10 @@ export default function UserProfile() {
   };
 
   const handleLogout = () => {
-    dispatch(logOutUser());
-    dispatch(setPickedIDsCourses([]));
-    router.push(Routes.Main);
+    dispatch(logOutUser()).then(() => {
+      dispatch(setPickedIDsCourses([]));
+      router.push(Routes.Main);
+    });
   };
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
@@ -23,10 +23,13 @@ export default function LogIn() {
   const handleLogIn = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(logInUser({ email, password }));
+  };
+
+  useEffect(() => {
     if (isAuthenticated) {
       router.back();
     }
-  };
+  }, [isAuthenticated, router]);
 
   return (
     <>
