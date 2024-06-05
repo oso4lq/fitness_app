@@ -1,7 +1,20 @@
+"use client";
+
+
+import { Button } from "@/components/Button/Button";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
+import Routes from "@/routes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  // const [isOpen, setIsOpen] = useState(false);
+  const onHomeClick = () => {
+    router.push(Routes.Main);
+    // setIsOpen(false);
+  };
 
   return (
     <>
@@ -18,6 +31,14 @@ export default function Home() {
         </div>
       </div>
       <CourseCardList  />
+
+      <div className="flex justify-center">
+      <Button className="mt-[34px] flex justify-center items-center content-end gap-[4px]" width="126px" onClick={onHomeClick}>
+        Наверх
+        <span className="-mt-[4.5px] text-[15px] font-bold">↑</span>
+          {/* <Arrow /> */}
+      </Button>
+      </div>
 
       <div className="DEVBLOCK">
         <p>блок на время разработки с кнопками на страницы</p>
