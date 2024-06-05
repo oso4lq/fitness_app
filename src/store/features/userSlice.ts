@@ -4,12 +4,10 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  User,
   AuthErrorCodes,
   createUserWithEmailAndPassword,
   updatePassword,
   reauthenticateWithCredential,
-  AuthCredential,
   EmailAuthProvider,
 } from "firebase/auth";
 import { AppDispatch } from "../store";
