@@ -15,6 +15,9 @@ const config: Config = {
         "dark-gradient":
           "linear-gradient(115.81deg, #151720 34.98%, #1E212E 91.5%)",
       },
+      cursor: {
+        customCursor: "url('/img/customCursor.png'), auto",
+      },
     },
     borderRadius: {
       DEFAULT: "30px",

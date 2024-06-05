@@ -9,7 +9,7 @@ import { db } from "@/lib/firebaseConfig";
 export default function Home() {
   const [courses, setCourses] = useState([]);
   const [pickedCourses, setPickedCourses] = useState([]);
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -39,6 +39,8 @@ export default function Home() {
     fetchCourses();
     fetchPickedCourses();
   }, [user]);
+
+  console.log(pickedCourses);
 
   return (
     <>

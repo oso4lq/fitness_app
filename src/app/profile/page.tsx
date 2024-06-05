@@ -12,8 +12,7 @@ export default function ProfilePage() {
   const [pickedCourses, setPickedCourses] = useState([]);
   const [courses, setCourses] = useState([]);
   const user = useAppSelector((state) => state.user);
-  const userUid = useAppSelector((state) => state.user.uid);
-  console.log(userUid);
+
 
   useEffect(() => {
     const fetchPickedCourses = async () => {
