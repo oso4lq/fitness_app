@@ -1,11 +1,9 @@
 import { Activity } from "@/components/Activity";
+import { CoursType } from "@/types/types";
 import Image from "next/image";
 
-interface CourseMainProps {
-  courseData: any;
-}
 
-export default function CourseMain({ courseData }: CourseMainProps) {
+export default function CourseMain({ courseData }: {courseData: CoursType}) {
   if (!courseData) {
     return <div>no data loaded</div>;
   }
@@ -21,7 +19,7 @@ export default function CourseMain({ courseData }: CourseMainProps) {
       </h2>
 
       <div className="flex mb-[60px] gap-[10px]">
-        {fitting.map((fittingItem: any, index: any) => (
+        {fitting.map((fittingItem: string, index: number) => (
           <div
             key={index}
             className="flex items-center gap-[25px] bg-dark-gradient p-[20px] rounded-[28px]"
@@ -40,7 +38,7 @@ export default function CourseMain({ courseData }: CourseMainProps) {
         Направления
       </h2>
       <div className="grid grid-cols-3 gap-x-[124px] gap-y-[34px] p-[30px] rounded-[28px] bg-green-dark"> 
-        {directions.map((direction: any, index: any) => (
+        {directions.map((direction: string, index: number) => (
           <div key={index} className="flex gap-[3px]">
             <Image
               src="/img/icon/sparcle.svg"

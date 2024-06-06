@@ -1,8 +1,39 @@
 import Image from "next/image";
 import { Button } from "../Button/Button";
+import { CoursType } from "@/types/types";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import {
+  addPickedCourse,
+  fetchPickedIDsCourses,
+  removePickedCourse,
+} from "@/lib/firebaseUser";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
+import { setPickedIDsCourses } from "@/store/features/coursesSlice";
 
-export default function CourseBegin() {
-  // logic
+export default function CourseBegin({ courseData }: { courseData: CoursType }) {
+  
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+  const pickedIDsCourses = useAppSelector(
+    (state) => state.usersCourses.pickedIDsCourses
+  );
+  const isPickedCourse = pickedIDsCourses.includes(courseData._id);
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const handlePickCourse = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isAuthenticated) {
+      await (isPickedCourse
+        ? removePickedCourse(courseData._id)
+        : addPickedCourse(courseData._id));
+      const IDsCourses: string[] = await fetchPickedIDsCourses();
+      dispatch(setPickedIDsCourses(IDsCourses));
+    } else {
+      router.replace(Routes.Login);
+    }
+  };
 
   return (
     <div className="bg-white-base mt-[102px] mb-[100px] p-[30px] rounded-[30px] shadow-blocks flex relative">
@@ -16,17 +47,23 @@ export default function CourseBegin() {
           data-tid="description-list"
           className="mb-[28px] list-inside space-y-3"
         >
-          <li className="list-item-grey">проработка всех групп мышц</li>
+          {/* className="text-[24px] font-normal leading-[26.4px] text-black-base opacity-60" */}
+          <p>{courseData.description}</p>
+          {/* <li className="list-item-grey">проработка всех групп мышц</li>
           <li className="list-item-grey">тренировка суставов</li>
           <li className="list-item-grey">улучшение циркуляции крови</li>
           <li className="list-item-grey">упражнения заряжают бодростью</li>
-          <li className="list-item-grey">помогают противостоять стрессам</li>
+          <li className="list-item-grey">помогают противостоять стрессам</li> */}
         </ul>
 
-        {/* <button>Добавить курс</button> // заменить на условное применение текста в кнопке по авторизации*/}
-        <Button>Войдите, чтобы добавить курс</Button>
+        <Button onClick={handlePickCourse}>
+          {!isAuthenticated
+            ? "Войдите, чтобы добавить курс"
+            : isPickedCourse
+            ? "Удалить курс"
+            : "Добавить курс"}
+        </Button>
       </div>
-
 
       <Image
         width={487}

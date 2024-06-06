@@ -20,14 +20,14 @@ export default function PickCourseBtn({
   const minusBtnUrl = "img/icon/minus.svg";
   const plusBtnUrl = "img/icon/plus.svg";
   const tooltipContent = isPicked ? "Удалить курс" : "Добавить курс";
-  const userUID = useAppSelector((state) => state.user.uid);
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handlePickCourse = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    if (userUID) {
+    if (isAuthenticated) {
       await (isPicked
         ? removePickedCourse(courseID)
         : addPickedCourse(courseID));
@@ -49,15 +49,6 @@ export default function PickCourseBtn({
         className="absolute top-5 right-5 cursor-customCursor"
         onClick={handlePickCourse}
       >
-        {/* посмотреть в документации Next.js еще раз по вставку svg
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          className="h-[32px] w-[32px] fill-white-base hover:fill-gray-dark active:fill-black-base"
-        >
-          <use className="h-[32px] w-[32px]" href={isPicked ? minusBtnUrl : plusBtnUrl} />{" "}
-        </svg> */}
         <Image
           src={isPicked ? minusBtnUrl : plusBtnUrl}
           alt={isPicked ? "minusBtn" : "plusBtn"}
@@ -69,3 +60,14 @@ export default function PickCourseBtn({
     </Tippy>
   );
 }
+
+
+        //  посмотреть в документации Next.js еще раз по вставку svg
+        // <svg
+        //   width="32"
+        //   height="32"
+        //   viewBox="0 0 32 32"
+        //   className="h-[32px] w-[32px] fill-white-base hover:fill-gray-dark active:fill-black-base"
+        // >
+        //   <use className="h-[32px] w-[32px]" href={isPicked ? minusBtnUrl : plusBtnUrl} />{" "}
+        // </svg> 

@@ -1,15 +1,13 @@
 import { CourseBegin } from "@/components/CourseBegin";
 import { CourseMain } from "@/components/CourseMain";
+import { CoursType } from "@/types/types";
 
-interface CoursePageProps {
-    courseData: any;
-}
 
-export default function CoursePage({ courseData }: CoursePageProps) {
+export default function CoursePage({ courseData }: {courseData: CoursType}) {
     return (
         <>
             <CourseMain courseData={courseData} />
-            <CourseBegin />
+            <CourseBegin courseData={courseData} />
         </>
     );
 }
