@@ -52,4 +52,5 @@ export type CoursesDataType = {
 
 export type CoursesStateType = {
   pickedIDsCourses: string[];
+  currentCourseData: null | CoursType;
 }

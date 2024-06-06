@@ -9,6 +9,8 @@ import { getTextButtonProfile } from "@/lib/getTextButtonProfile";
 import { useRouter } from "next/navigation";
 import Routes from "@/routes";
 import PickCourseBtn from "../PickCourseBtn/PickCourseBtn";
+import { useAppDispatch } from "@/hooks";
+import { setCurrentCourseData } from "@/store/features/coursesSlice";
 
 interface CourseCardProps {
   courseData: CoursType;
@@ -23,6 +25,7 @@ export default function CourseCard({
 }: CourseCardProps) {
 
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const completionPercentage: number = 30; //заменить на получение из backend
 
   const handleCoursePageOpen = () => {
@@ -30,6 +33,7 @@ export default function CourseCard({
   };
 
   const handleSelectWorkoutPageOpen = () => {
+    dispatch(setCurrentCourseData(courseData));
     router.push(Routes.SelectWorkout);
   };
 

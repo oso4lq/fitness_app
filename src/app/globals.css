@@ -71,6 +71,12 @@ p {
     left: 50%;
     clip-path: polygon(25% 0, 100% 0, 0% 100%);
   }
+
+  .check-mark {
+    background: #ffffff;
+    clip-path: polygon(45% 64%, 84% 14%, 100% 28%, 47% 100%, 0 49%, 15% 32%);
+  }
+  
 }
 
 @layer components {

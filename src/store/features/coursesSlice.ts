@@ -1,8 +1,9 @@
-import { CoursesStateType } from "@/types/types";
+import { CoursesStateType, CoursType } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: CoursesStateType = {
   pickedIDsCourses: [],
+  currentCourseData: null,
 };
 
 const coursesSlice = createSlice({
@@ -12,10 +13,12 @@ const coursesSlice = createSlice({
     setPickedIDsCourses: (state, action: PayloadAction<string[]>) => {
       state.pickedIDsCourses = action.payload || [];
     },
+    setCurrentCourseData: (state, action: PayloadAction<null | CoursType>) => {
+      state.currentCourseData = action.payload;
+    },
   },
 });
 
-export const {
-    setPickedIDsCourses,
-  } = coursesSlice.actions;
-  export const usersCoursesReducer = coursesSlice.reducer;
+export const { setPickedIDsCourses, setCurrentCourseData } =
+  coursesSlice.actions;
+export const usersCoursesReducer = coursesSlice.reducer;
