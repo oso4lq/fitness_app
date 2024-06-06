@@ -10,7 +10,7 @@ const coursesSlice = createSlice({
   initialState,
   reducers: {
     setPickedIDsCourses: (state, action: PayloadAction<string[]>) => {
-      state.pickedIDsCourses = action.payload;
+      state.pickedIDsCourses = action.payload || [];
     },
   },
 });
