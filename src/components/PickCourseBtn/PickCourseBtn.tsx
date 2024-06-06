@@ -17,7 +17,6 @@ export default function PickCourseBtn({
   isPicked: boolean;
   courseID: string;
 }) {
-
   const minusBtnUrl = "img/icon/minus.svg";
   const plusBtnUrl = "img/icon/plus.svg";
   const tooltipContent = isPicked ? "Удалить курс" : "Добавить курс";
@@ -35,7 +34,7 @@ export default function PickCourseBtn({
       const IDsCourses: string[] = await fetchPickedIDsCourses();
       dispatch(setPickedIDsCourses(IDsCourses));
     } else {
-      router.push(Routes.Login);
+      router.replace(Routes.Login);
     }
   };
 
@@ -50,11 +49,21 @@ export default function PickCourseBtn({
         className="absolute top-5 right-5 cursor-customCursor"
         onClick={handlePickCourse}
       >
+        {/* посмотреть в документации Next.js еще раз по вставку svg
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          className="h-[32px] w-[32px] fill-white-base hover:fill-gray-dark active:fill-black-base"
+        >
+          <use className="h-[32px] w-[32px]" href={isPicked ? minusBtnUrl : plusBtnUrl} />{" "}
+        </svg> */}
         <Image
           src={isPicked ? minusBtnUrl : plusBtnUrl}
           alt={isPicked ? "minusBtn" : "plusBtn"}
           width={32}
           height={32}
+          className="hover:scale-125 active:scale-125 active:rounded-[50%] active:border-4 active:border-gray-dark"
         />
       </button>
     </Tippy>
