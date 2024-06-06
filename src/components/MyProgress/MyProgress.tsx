@@ -1,8 +1,17 @@
 "use client";
 
+import Routes from "@/routes";
 import { Button } from "../Button/Button";
+import { useRouter } from "next/navigation";
+import Input from "../Input/Input";
 
 export default function MyProgress() {
+  const router = useRouter();
+
+  const onSaveClick = () => {
+    router.replace(Routes.ApprovalResult);
+  };
+
   return (
     <>
       <div className="mb-8">
@@ -19,112 +28,17 @@ export default function MyProgress() {
               </p>
               <div>
                 <input
+                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
+                  name="times"
                   type="number"
                   placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали наклоны назад?
-              </p>
-              <div className="">
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали поднятие ног, согнутых в коленях?
-              </p>
-              <div className="">
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали наклоны вперед?
-              </p>
-              <div>
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали наклоны назад?
-              </p>
-              <div className="">
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали поднятие ног, согнутых в коленях?
-              </p>
-              <div className="">
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали наклоны вперед?
-              </p>
-              <div>
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="mb-5 space-y-2">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали наклоны назад?
-              </p>
-              <div className="">
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
-              </div>
-            </div>
-            <div className="">
-              <p className="text-sm leading-5 text-left">
-                Сколько раз вы сделали поднятие ног, согнутых в коленях?
-              </p>
-              <div className="">
-                <input
-                  type="number"
-                  placeholder="0"
-                  className="w-full px-[18px] py-[12px] text-lg appearance-none border rounded-small border-gray-extra  bg-white-base text-black-base placeholder-gray-extra"
-                />
+                ></input>
               </div>
             </div>
           </div>
         </div>
         <div className="">
-          <Button>Сохранить</Button>
+          <Button onClick={onSaveClick}>Сохранить</Button>
         </div>
       </form>
     </>

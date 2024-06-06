@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import { Workout, WorkoutsData } from "@/types/types";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 import { Button } from "@/components/Button/Button";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
 };
 
 export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
+  const router = useRouter();
   const workoutId = params.id;
 
   const [workoutData, setWorkoutData] = useState<Workout | null>(null);
@@ -27,6 +30,10 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
     };
     getWorkoutData();
   }, [workoutId]);
+
+  const onSaveClick = () => {
+    router.push(Routes.MyProgress);
+  };
 
   return (
     <>
@@ -104,7 +111,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 })}
               </div>
 
-              <Button width="320px">Заполнить свой прогресс</Button>
+              <Button onClick={onSaveClick} width="320px">Заполнить свой прогресс</Button>
             </div>
           ) : (
             ""
