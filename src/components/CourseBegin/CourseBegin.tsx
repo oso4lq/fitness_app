@@ -12,7 +12,6 @@ import Routes from "@/routes";
 import { setPickedIDsCourses } from "@/store/features/coursesSlice";
 
 export default function CourseBegin({ courseData }: { courseData: CoursType }) {
-  
   const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   const pickedIDsCourses = useAppSelector(
     (state) => state.usersCourses.pickedIDsCourses
@@ -36,9 +35,9 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
   };
 
   return (
-    <div className="bg-white-base mt-[102px] mb-[100px] p-[30px] rounded-[30px] shadow-blocks flex relative">
-      <div className="w-[437px]">
-        <h1 className="mb-[28px] text-black-base text-[60px] font-medium leading-[60px]">
+    <div className="bg-white-base mt-[102px] sm:mt-[156px] mb-[100px] sm:mx-4 p-[30px] rounded-[30px] shadow-blocks flex relative">
+      <div className="w-[437px] sm:z-[10]">
+        <h1 className="mb-[28px] text-black-base text-[60px] sm:text-[35px] font-medium leading-[60px] sm:leading-9">
           Начните путь к новому телу
         </h1>
 
@@ -68,11 +67,11 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
       <Image
         width={487}
         height={543}
-        className="absolute bottom-[30px] right-[44px] z-30 -rotate-3"
+        className="absolute bottom-[30px] sm:bottom-[462px] right-[44px] sm:right-[-60px] z-30 sm:z-[1] -rotate-3"
         src="/img/new_body.png"
         alt="runner"
       />
-      <div className="absolute bottom-0 right-[20px] z-20 max-w-[650px] h-[370px] overflow-hidden">
+      <div className="absolute bottom-0 sm:bottom-[400px] right-[20px] sm:right-[-50px] z-20 sm:z-[0] max-w-[650px] h-[370px] overflow-hidden">
         <Image
           width={670}
           height={390}

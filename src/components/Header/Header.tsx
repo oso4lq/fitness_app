@@ -36,16 +36,14 @@ export default function Header() {
   };
 
   return (
-    <div className="flex justify-between">
-      <div>
-        <div>
-          <Link href={"/"}>
-            <Logo />
-            <div className="text-lg opacity-60">
-              Онлайн-тренировки для занятий дома
-            </div>
-          </Link>
-        </div>
+    <div className="flex justify-between sm:mx-4">
+      <div className="sm:mb-[2px]">
+        <Link href={"/"}>
+          <Logo />
+          <div className="text-lg opacity-60 sm:hidden">
+            Онлайн-тренировки для занятий дома
+          </div>
+        </Link>
       </div>
       <div className="flex items-center">
         {isAuthenticated ? (
@@ -95,7 +93,7 @@ export default function Header() {
             </div>
           </div>
         ) : (
-          <Button width="102px" onClick={onLoginClick}>
+          <Button width="102px" onClick={onLoginClick} className="sm:h-[36px] sm:w-[83px]">
             Войти
           </Button>
         )}

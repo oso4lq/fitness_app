@@ -63,7 +63,7 @@ export default function CourseCardList() {
   const coursesForRender = isProfilePage ? pickedCourses : courses;
 
   return (
-    <div className="flex flex-wrap gap-[30px]">
+    <div className="grid grid-cols-3 gap-[40px] sm:flex sm:items-center sm:flex-col">
       {coursesForRender.map((course: CoursType) => (
         <CourseCard
           key={course._id}

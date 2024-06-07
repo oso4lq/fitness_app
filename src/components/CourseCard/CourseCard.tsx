@@ -39,10 +39,10 @@ export default function CourseCard({
 
   return (
     <div
-      className="w-[360px] rounded-[30px] shadow-blocks bg-white-base cursor-pointer"
+      className="w-[360px] sm:w-[343px] rounded-[30px] shadow-blocks bg-white-base cursor-pointer"
       onClick={handleCoursePageOpen}
     >
-      <div className="rounded-[30px] overflow-hidden w-[360px] h-[325px] relative">
+      <div className="rounded-[30px] overflow-hidden w-[360px] sm:w-[343px] h-[325px] relative">
         <Image
           src={`/img/theme_${courseData.nameEN}.svg`}
           alt={courseData.nameRU}

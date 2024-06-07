@@ -14,11 +14,11 @@ export default function CourseMain({ courseData }: {courseData: CoursType}) {
     <div data-tid="courseMainBox" className="mt-[60px]">
       <Activity courseData={courseData} />
 
-      <h2 className="mb-[40px] text-[40px] font-semibold leadin-[44px] text-black-base">
+      <h2 className="mb-[40px] sm:mb-[24px] sm:mx-[16px] text-[40px] sm:text-[26px] font-semibold leadin-[44px] text-black-base">
         Подойдёт для вас, если:
       </h2>
 
-      <div className="flex mb-[60px] gap-[10px]">
+      <div className="flex mb-[60px] sm:mb-[40px] gap-[10px] sm:flex-col sm:mx-4">
         {fitting.map((fittingItem: string, index: number) => (
           <div
             key={index}
@@ -34,10 +34,10 @@ export default function CourseMain({ courseData }: {courseData: CoursType}) {
         ))}
       </div>
 
-      <h2 className="mb-[40px] text-[40px] font-semibold leadin-[44px] text-black-base">
+      <h2 className="mb-[40px] sm:mb-[24px] sm:mx-4 text-[40px] sm:text-[24px] font-semibold sm:font-medium leadin-[44px] text-black-base">
         Направления
       </h2>
-      <div className="grid grid-cols-3 gap-x-[124px] gap-y-[34px] p-[30px] rounded-[28px] bg-green-dark"> 
+      <div className="grid sm:flex sm:flex-col sm:mx-4 grid-cols-3 gap-x-[124px] gap-y-[34px] p-[30px] rounded-[28px] bg-green-dark"> 
         {directions.map((direction: string, index: number) => (
           <div key={index} className="flex gap-[3px]">
             <Image
@@ -46,7 +46,7 @@ export default function CourseMain({ courseData }: {courseData: CoursType}) {
               height={26}
               alt="sparcle"
             />
-            <div className="text-black-base text-[24px] font-normal leading-[26.4px]">{direction}</div>
+            <div className="text-black-base text-[24px] sm:text-[20px] font-normal leading-[26.4px]">{direction}</div>
           </div>
         ))}
       </div>

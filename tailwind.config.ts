@@ -51,6 +51,12 @@ const config: Config = {
     boxShadow: {
       blocks: "0px 4px 67px -12px #00000021",
     },
+    screens: {
+      xl: { max: "1400px" },
+      lg: { max: "1200px" },
+      md: { max: "660px" },
+      sm: { max: "375px" },
+    },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
 };
