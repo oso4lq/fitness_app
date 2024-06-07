@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Routes from "@/routes";
 import { logOutUser } from "@/store/features/userSlice";
-import { setPickedIDsCourses } from "@/store/features/coursesSlice";
+import { setCurrentCourseData, setCurrentWorkoutData, setPickedIDsCourses } from "@/store/features/coursesSlice";
 
 export default function UserProfile() {
   const router = useRouter();
@@ -21,6 +21,8 @@ export default function UserProfile() {
   const handleLogout = () => {
     dispatch(logOutUser()).then(() => {
       dispatch(setPickedIDsCourses([]));
+      dispatch(setCurrentCourseData(null));
+      dispatch(setCurrentWorkoutData({data: null, index: null}));
       router.push(Routes.Main);
     });
   };

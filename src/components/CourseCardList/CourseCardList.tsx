@@ -21,7 +21,7 @@ export default function CourseCardList() {
 
   const dispatch = useAppDispatch();
   const pathname = usePathname();
-  const isProfilePage = pathname === Routes.Profile;
+  const isProfilePage = pathname === Routes.Profile || pathname === Routes.SelectWorkout;
 
   useEffect(() => {
     const fetchCourses = async () => {

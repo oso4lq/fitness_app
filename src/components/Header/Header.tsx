@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import { useAppDispatch, useAppSelector, useOutsideClick } from "@/hooks";
 import Routes from "@/routes";
-import { setPickedIDsCourses } from "@/store/features/coursesSlice";
+import { setCurrentCourseData, setCurrentWorkoutData, setPickedIDsCourses } from "@/store/features/coursesSlice";
 
 export default function Header() {
   const { isAuthenticated, email } = useAppSelector((state) => state.user);
@@ -22,6 +22,8 @@ export default function Header() {
     dispatch(logOutUser()).then(() => {
       setIsOpen(false);
       dispatch(setPickedIDsCourses([]));
+      dispatch(setCurrentCourseData(null));
+      dispatch(setCurrentWorkoutData({data: null, index: null}));
       router.replace("/");
     });
   };
