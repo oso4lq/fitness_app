@@ -2,11 +2,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Workout, WorkoutsData } from "@/types/types";
+import { Workout } from "@/types/types";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 import { Button } from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
 import Routes from "@/routes";
+import { useAppSelector } from "@/hooks";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
@@ -16,12 +17,21 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
   const router = useRouter();
   const workoutId = params.id;
 
+  const indexWorkout = useAppSelector(
+    (state) => state.usersCourses.currentWorkoutIndex
+  );
+  const nameCourse = useAppSelector(
+    (state) => state.usersCourses.currentCourseData?.nameRU
+  );
+
   const [workoutData, setWorkoutData] = useState<Workout | null>(null);
 
   useEffect(() => {
     const getWorkoutData = async () => {
       try {
-        const response = await fetch(`https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app/workouts/${workoutId}.json`);
+        const response = await fetch(
+          `https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app/workouts/${workoutId}.json`
+        );
         const data = await response.json();
         setWorkoutData(data);
       } catch (error) {
@@ -43,7 +53,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
             data-tid="titleCourseName"
             className="mt-10 text-6xl font-medium leading-none"
           >
-            <span className="text-red-500">course_name from profile_page</span>
+            {nameCourse}
           </h1>
           <p
             data-tid="workoutName"
@@ -74,8 +84,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 data-tid="titleExercises"
                 className="text-4xl font-normal leading-snug"
               >
-                Упражнения тренировки{" "}
-                <span className="text-red-500">#index</span>
+                {`Упражнения тренировки ${indexWorkout}`}
               </h2>
 
               <div
@@ -84,8 +93,9 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
               >
                 {workoutData.exercises?.map((item, index) => {
                   const currentProgress = 5; // заглушка для рендера, поменять логику на получение из инпута
-                  const completionPercentage =
-                    Math.round((currentProgress / item.quantity) * 100);
+                  const completionPercentage = Math.round(
+                    (currentProgress / item.quantity) * 100
+                  );
                   const nameExerciseUpgrate: string = item.name.replace(
                     /\(\d+ повторений\)/,
                     `${completionPercentage}%`
@@ -111,7 +121,9 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 })}
               </div>
 
-              <Button onClick={onSaveClick} width="320px">Заполнить свой прогресс</Button>
+              <Button onClick={onSaveClick} width="320px">
+                Заполнить свой прогресс
+              </Button>
             </div>
           ) : (
             ""

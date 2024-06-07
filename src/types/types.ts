@@ -53,4 +53,11 @@ export type CoursesDataType = {
 export type CoursesStateType = {
   pickedIDsCourses: string[];
   currentCourseData: null | CoursType;
+  currentWorkoutData: null | Workout;
+  currentWorkoutIndex: null | number;
 }
+
+export type setCurrentWorkoutType = {
+  data: null | Workout;
+  index: null | number;
+};
