@@ -7,7 +7,11 @@ import Image from "next/image";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Routes from "@/routes";
 import { logOutUser } from "@/store/features/userSlice";
-import { setCurrentCourseData, setCurrentWorkoutData, setPickedIDsCourses } from "@/store/features/coursesSlice";
+import {
+  setCurrentCourseData,
+  setCurrentWorkoutData,
+  setPickedIDsCourses,
+} from "@/store/features/coursesSlice";
 
 export default function UserProfile() {
   const router = useRouter();
@@ -22,7 +26,7 @@ export default function UserProfile() {
     dispatch(logOutUser()).then(() => {
       dispatch(setPickedIDsCourses([]));
       dispatch(setCurrentCourseData(null));
-      dispatch(setCurrentWorkoutData({data: null, index: null}));
+      dispatch(setCurrentWorkoutData({ data: null, index: null }));
       router.push(Routes.Main);
     });
   };
@@ -31,35 +35,46 @@ export default function UserProfile() {
     <>
       <h2
         data-tid="titleProfile"
-        className="mt-50 text-[40px] font-semibold leading-[44px]"
+        className="sm:mx-4 text-[40px] sm:text-[26px] font-semibold leading-[44px]"
       >
         Профиль
       </h2>
       <div
         data-tid="profileUserInfoBlock"
-        className="bg-white-base mt-10 h-[257px] p-[30px] rounded-[30px] shadow-blocks"
+        className="bg-white-base mt-10 sm:mt-6 sm:mx-4 h-[257px] sm:h-auto p-[30px] rounded-[30px] shadow-blocks"
       >
-        <div data-tid="contentBlock" className="flex gap-[30px] flex-wrap">
+        <div
+          data-tid="contentBlock"
+          className="flex gap-[30px] sm:flex-col sm:items-center"
+        >
           <Image
             height={197}
             width={197}
             alt="photo_user"
             src="/img/icon/photo_user.svg"
+            className="sm:w-[141px] sm:h-[141px]"
           />
-          <div data-tid="userData" className="flex flex-col gap-[30px]">
-            <h3 className="text-[32px] font-medium leading-[35px]">
+          <div
+            data-tid="userData"
+            className="flex flex-col gap-[30px] sm:gap-[20px]"
+          >
+            <h3 className="text-[32px] sm:text-[26px] font-medium leading-[35px]">
               {email?.split("@")[0]}
             </h3>
-            <div className="">
-              <p className="mb-[10px] text-[18px] font-normal leading-[19px]">
-                Логин: {email}
-              </p>
+            <div className="text-[18px] font-normal leading-[19px]">
+              Логин: {email}
             </div>
-            <div className="w-[394px] flex flex-wrap gap-[10px]">
-              <Button width="192px" onClick={handleChangePassword}>
+            <div className="w-[394px] sm:w-[283px] flex gap-[10px] sm:flex-col sm:items-center">
+              <Button
+                onClick={handleChangePassword}
+                className="w-[192px] sm:h-[50px] sm:w-[283px]"
+              >
                 Изменить пароль
               </Button>
-              <ButtonAdditional width="192px" onClick={handleLogout}>
+              <ButtonAdditional
+                onClick={handleLogout}
+                className="w-[192px] sm:h-[50px] sm:w-[283px]"
+              >
                 Выйти
               </ButtonAdditional>
             </div>

@@ -51,24 +51,24 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
         <div>
           <h1
             data-tid="titleCourseName"
-            className="mt-10 text-6xl font-medium leading-none"
+            className="mt-10 text-6xl font-medium leading-none sm:mx-4"
           >
             {nameCourse}
           </h1>
           <p
             data-tid="workoutName"
-            className="mt-6 text-4xl font-normal leading-snug"
+            className="mt-6 text-4xl font-normal leading-snug sm:mx-4"
           >
             {workoutData.name}
           </p>
 
           <div
             data-tid="videoContainer"
-            className="relative mt-10 w-full overflow-hidden aspect-w-16 aspect-h-9 rounded"
+            className="relative mt-10 sm:mx-4 w-full overflow-hidden aspect-w-16 aspect-h-9 rounded"
           >
             <iframe
               data-tid="video"
-              className="absolute top-0 left-0 h-full w-full rounded-2xl object-cover"
+              className="absolute  top-0 left-0 h-full w-full rounded-2xl object-cover"
               src={workoutData.video}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -78,11 +78,11 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
           {workoutData.exercises ? (
             <div
               data-tid="exercisesBlock"
-              className="mt-10 mb-[60px] rounded bg-white-base p-10 shadow-blocks"
+              className="mt-10 mb-[60px] sm:mx-4 rounded bg-white-base p-10 sm:p-[30px] shadow-blocks"
             >
               <h2
                 data-tid="titleExercises"
-                className="text-4xl font-normal leading-snug"
+                className="text-[35px] font-normal leading-snug"
               >
                 {`Упражнения тренировки ${indexWorkout}`}
               </h2>
@@ -121,9 +121,9 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 })}
               </div>
 
-              <Button onClick={onSaveClick} width="320px">
-                Заполнить свой прогресс
-              </Button>
+              <div className="w-[320px] sm:w-[283px]">
+                <Button onClick={onSaveClick}>Заполнить свой прогресс</Button>
+              </div>
             </div>
           ) : (
             ""

@@ -46,7 +46,7 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
           data-tid="description-list"
           className="mb-[28px] list-inside space-y-3"
         >
-          {/* className="text-[24px] font-normal leading-[26.4px] text-black-base opacity-60" */}
+          {/* className="text-6 font-normal leading-[26.4px] text-black-base opacity-60" */}
           <p>{courseData.description}</p>
           {/* <li className="list-item-grey">проработка всех групп мышц</li>
           <li className="list-item-grey">тренировка суставов</li>
@@ -67,11 +67,11 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
       <Image
         width={487}
         height={543}
-        className="absolute bottom-[30px] sm:bottom-[462px] right-[44px] sm:right-[-60px] z-30 sm:z-[1] -rotate-3"
+        className="absolute bottom-[30px] right-[44px] z-30 -rotate-3"
         src="/img/new_body.png"
         alt="runner"
       />
-      <div className="absolute bottom-0 sm:bottom-[400px] right-[20px] sm:right-[-50px] z-20 sm:z-[0] max-w-[650px] h-[370px] overflow-hidden">
+      <div className="absolute bottom-0 right-[20px] z-20 max-w-[650px] h-[370px] overflow-hidden">
         <Image
           width={670}
           height={390}

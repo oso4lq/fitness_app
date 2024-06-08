@@ -27,9 +27,9 @@ function handleClick(
 export function Button({
   width,
   children,
+  className,
   onClick,
   disabled,
-  className,
 }: ButtonProps) {
   return (
     <button

@@ -14,7 +14,7 @@ export default function CourseMain({ courseData }: {courseData: CoursType}) {
     <div data-tid="courseMainBox" className="mt-[60px]">
       <Activity courseData={courseData} />
 
-      <h2 className="mb-[40px] sm:mb-[24px] sm:mx-[16px] text-[40px] sm:text-[26px] font-semibold leadin-[44px] text-black-base">
+      <h2 className="mb-[40px] sm:mb-6 sm:mx-[16px] text-[40px] sm:text-[26px] font-semibold leadin-[44px] text-black-base">
         Подойдёт для вас, если:
       </h2>
 
@@ -34,7 +34,7 @@ export default function CourseMain({ courseData }: {courseData: CoursType}) {
         ))}
       </div>
 
-      <h2 className="mb-[40px] sm:mb-[24px] sm:mx-4 text-[40px] sm:text-[24px] font-semibold sm:font-medium leadin-[44px] text-black-base">
+      <h2 className="mb-[40px] sm:mb-6 sm:mx-4 text-[40px] sm:text-[24px] font-semibold sm:font-medium leadin-[44px] text-black-base">
         Направления
       </h2>
       <div className="grid sm:flex sm:flex-col sm:mx-4 grid-cols-3 gap-x-[124px] gap-y-[34px] p-[30px] rounded-[28px] bg-green-dark"> 

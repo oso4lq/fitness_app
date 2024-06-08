@@ -51,19 +51,19 @@ export default function Header() {
         {isAuthenticated ? (
           <div className="flex">
             <Image
-              className="w-12 h-12"
+              className="w-12 h-12 sm:w-[36px] sm:h-[36px]"
               src="/img/icon/user.svg"
               alt="user_img"
               width={48}
               height={48}
             />
             <div
-              className="flex items-center ml-4 cursor-pointer relative"
+              className="flex items-center ml-4 sm:ml-0 cursor-pointer relative"
               onClick={() => {
                 setIsOpen((val) => !val);
               }}
             >
-              <div>{email?.split("@")[0]}</div>
+              <div className="sm:hidden">{email?.split("@")[0]}</div>
               <Image
                 className="w-3 h-2 ml-3"
                 src="/img/icon/button_user.svg"
