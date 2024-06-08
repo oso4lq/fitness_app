@@ -16,7 +16,7 @@ export default function SelectWorkout() {
     (state) => state.usersCourses.currentCourseData
   )?.workouts;
   const [workouts, setWorkouts] = useState<Workout[]>([]);
-  const [isModalVisible, setIsModalVisible] = useState(true); // Состояние для управления видимостью модального окна
+  // const [isModalVisible, setIsModalVisible] = useState(true); // Состояние для управления видимостью модального окна
   const router = useRouter();
 
   useEffect(() => {
@@ -46,12 +46,12 @@ export default function SelectWorkout() {
   // сделать чтобы окно закрывалось после клика по кнопке Начать
   const selectedWorkoutPageOpen = () => {
     router.push(Routes.Workout + "/" + selectedWorkout?._id);
-    setIsModalVisible(false);
+    // setIsModalVisible(false);
   };
 
   return (
-    <>
-      {isModalVisible && (
+    // <>
+    //   {isModalVisible && (
         <>
           <div className="mb-8">
             <h1 className="text-2xl leading-8 text-center font-medium">
@@ -76,8 +76,8 @@ export default function SelectWorkout() {
             </div>
           </form>
         </>
-      )}
-    </>
+    //   )}
+    // </>
   );
 }
 
