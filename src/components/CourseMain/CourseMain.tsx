@@ -11,7 +11,7 @@ export default function CourseMain({ courseData }: {courseData: CoursType}) {
   const { fitting, directions } = courseData;
 
   return (
-    <div data-tid="courseMainBox" className="mt-[60px]">
+    <div data-tid="courseMainBox" className="mt-[60px] sm:mt-[40px]">
       <Activity courseData={courseData} />
 
       <h2 className="mb-[40px] sm:mb-6 sm:mx-[16px] text-[40px] sm:text-[26px] font-semibold leadin-[44px] text-black-base">

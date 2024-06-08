@@ -9,7 +9,11 @@ import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import { useAppDispatch, useAppSelector, useOutsideClick } from "@/hooks";
 import Routes from "@/routes";
-import { setCurrentCourseData, setCurrentWorkoutData, setPickedIDsCourses } from "@/store/features/coursesSlice";
+import {
+  setCurrentCourseData,
+  setCurrentWorkoutData,
+  setPickedIDsCourses,
+} from "@/store/features/coursesSlice";
 
 export default function Header() {
   const { isAuthenticated, email } = useAppSelector((state) => state.user);
@@ -23,7 +27,7 @@ export default function Header() {
       setIsOpen(false);
       dispatch(setPickedIDsCourses([]));
       dispatch(setCurrentCourseData(null));
-      dispatch(setCurrentWorkoutData({data: null, index: null}));
+      dispatch(setCurrentWorkoutData({ data: null, index: null }));
       router.replace("/");
     });
   };
@@ -74,7 +78,7 @@ export default function Header() {
               {isOpen && (
                 <div
                   ref={ref}
-                  className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] right-0"
+                  className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] sm:top-36 right-0 sm:right-9 sm:border-2  sm:border-gray-dark"
                 >
                   <div className="mb-8">
                     <div className="text-lg text-center">
@@ -95,7 +99,11 @@ export default function Header() {
             </div>
           </div>
         ) : (
-          <Button width="102px" onClick={onLoginClick} className="sm:h-[36px] sm:w-[83px]">
+          <Button
+            width="102px"
+            onClick={onLoginClick}
+            className="sm:h-[36px] sm:w-[83px]"
+          >
             Войти
           </Button>
         )}

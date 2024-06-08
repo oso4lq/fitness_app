@@ -35,57 +35,50 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
   };
 
   return (
-    <div className="bg-white-base mt-[102px] sm:mt-[156px] mb-[100px] sm:mx-4 p-[30px] rounded-[30px] shadow-blocks flex relative">
-      <div className="w-[437px] sm:z-[10]">
-        <h1 className="mb-[28px] text-black-base text-[60px] sm:text-[35px] font-medium leading-[60px] sm:leading-9">
-          Начните путь к новому телу
-        </h1>
+    <div className="relative">
+      <Image
+        width={482}
+        height={455}
+        className="hidden md:block w-[375px] h-[455px] object-none right-[-1] top-[-250px] absolute z-10"
+        src="/img/runner_mini.svg"
+        alt="runner"
+      />
+      <div className="bg-white-base mt-[102px] sm:mt-[156px] mb-[100px] sm:mx-4 p-[30px] rounded-[30px] relative shadow-blocks flex z-30">
+        <div className="w-[437px]">
+          <h1 className="mb-[28px] text-black-base text-[60px] sm:text-[35px] font-medium leading-[60px] sm:leading-9">
+            Начните путь к новому телу
+          </h1>
 
-        {/* содержание напоминает description в курсе, но там строка произвольного текста, уточнить должен ли тут быть список?! */}
-        <ul
-          data-tid="description-list"
-          className="mb-[28px] list-inside space-y-3"
-        >
-          {/* className="text-6 font-normal leading-[26.4px] text-black-base opacity-60" */}
-          <p>{courseData.description}</p>
-          {/* <li className="list-item-grey">проработка всех групп мышц</li>
+          {/* содержание напоминает description в курсе, но там строка произвольного текста, уточнить должен ли тут быть список?! */}
+          <ul
+            data-tid="description-list"
+            className="mb-[28px] list-inside space-y-3"
+          >
+            {/* className="text-6 font-normal leading-[26.4px] text-black-base opacity-60" */}
+            <p>{courseData.description}</p>
+            {/* <li className="list-item-grey">проработка всех групп мышц</li>
           <li className="list-item-grey">тренировка суставов</li>
           <li className="list-item-grey">улучшение циркуляции крови</li>
           <li className="list-item-grey">упражнения заряжают бодростью</li>
           <li className="list-item-grey">помогают противостоять стрессам</li> */}
-        </ul>
+          </ul>
 
-        <Button onClick={handlePickCourse}>
-          {!isAuthenticated
-            ? "Войдите, чтобы добавить курс"
-            : isPickedCourse
-            ? "Удалить курс"
-            : "Добавить курс"}
-        </Button>
-      </div>
-
-      <Image
-        width={487}
-        height={543}
-        className="absolute bottom-[30px] right-[44px] z-30 -rotate-3"
-        src="/img/new_body.png"
-        alt="runner"
-      />
-      <div className="absolute bottom-0 right-[20px] z-20 max-w-[650px] h-[370px] overflow-hidden">
+          <Button onClick={handlePickCourse}>
+            {!isAuthenticated
+              ? "Войдите, чтобы добавить курс"
+              : isPickedCourse
+              ? "Удалить курс"
+              : "Добавить курс"}
+          </Button>
+        </div>
         <Image
-          width={670}
-          height={390}
-          src="/img/curve-green.svg"
-          alt="curve-green"
+          width={738}
+          height={708}
+          className="block md:hidden w-[738px] h-[588px] bottom-[30px] right-[-10px] z-30 -rotate-3 absolute object-none object-left-top"
+          src="/img/runner.svg"
+          alt="runner"
         />
       </div>
-      <Image
-        width={50}
-        height={42}
-        className="absolute top-[32px] right-[378px] z-20"
-        src="/img/curve-black.svg"
-        alt="curve-black"
-      />
     </div>
   );
 }
