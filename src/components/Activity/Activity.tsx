@@ -1,19 +1,17 @@
 import Image from "next/image";
 
 export default function Activity({ courseData }: any) {
-  // logic
-
   const { nameRU, nameEN } = courseData;
 
   return (
     <div
       data-tid="activityBox"
-      className="mb-[60px] sm:mb-[40px] rounded-[30px] flex relative sm:mx-4" //justify-between
+      className="mb-[60px] sm:mb-10 md:mb-10 rounded-[30px] flex relative sm:mx-4 md:mx-4"
     >
-      <h1 className="absolute mx-[40px] mt-[40px] text-[60px] font-medium leadin-[66px] text-white-base sm:hidden">
+      <h1 className="absolute mx-[40px] mt-[40px] text-[60px] font-medium leading-[66px] text-white-base sm:hidden">
         {nameRU}
       </h1>
-      <div className="block md:hidden">
+      <div className="block sm:hidden">
         <Image
           width={1160}
           height={310}
@@ -21,7 +19,7 @@ export default function Activity({ courseData }: any) {
           alt={`${nameRU}`}
         />
       </div>
-      <div className="hidden md:block sm:w-[343px] sm:rounded">
+      <div className="hidden lg:block md:hidden sm:w-[343px] sm:rounded">
         <Image
           width={343}
           height={389}

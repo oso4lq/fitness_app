@@ -15,16 +15,16 @@ export default function ProfilePage() {
 
   return (
     <PrivateRoute>
-      <div data-tid="pageWrap" className="py-[60px] sm:py-[40px]">
+      <div data-tid="pageWrap" className="py-[60px] sm:py-[40px] md:py-[40px]">
         <UserProfile />
         <h2
           data-tid="titleCourses"
-          className="mt-[60px] mb-[40px] sm:my-6 sm:mx-4 text-[40px] sm:text-[26px] font-semibold leading-[44px]"
+          className="mt-[60px] mb-[40px] sm:my-6 md:my-6 sm:mx-4 md:mx-4 text-[40px] sm:text-[26px] md:text-[32px] font-semibold leading-[44px]"
         >
           Мои курсы
         </h2>
         <CourseCardList />
-        <div className="hidden sm:mr-4 sm:flex sm:justify-end">
+        <div className="hidden sm:mr-4 sm:flex md:flex sm:justify-end md:justify-center">
           <Button
             className="mt-[34px] flex justify-center items-center content-end gap-[4px]"
             width="126px"
@@ -32,7 +32,6 @@ export default function ProfilePage() {
           >
             Наверх
             <span className="-mt-[4.5px] text-[15px] font-bold">↑</span>
-            {/* <Arrow /> */}
           </Button>
         </div>
       </div>

@@ -35,17 +35,17 @@ export default function UserProfile() {
     <>
       <h2
         data-tid="titleProfile"
-        className="sm:mx-4 text-[40px] sm:text-[26px] font-semibold leading-[44px]"
+        className="text-[40px] sm:text-[26px] md:text-[32px] sm:mx-4 md:mx-4 font-semibold leading-[44px]"
       >
         Профиль
       </h2>
       <div
         data-tid="profileUserInfoBlock"
-        className="bg-white-base mt-10 sm:mt-6 sm:mx-4 h-[257px] sm:h-auto p-[30px] rounded-[30px] shadow-blocks"
+        className="bg-white-base mt-10 sm:mt-6 md:mt-6 sm:mx-4 md:mx-4 h-[257px] sm:h-auto p-[30px] rounded-[30px] shadow-blocks"
       >
         <div
           data-tid="contentBlock"
-          className="flex gap-[30px] sm:flex-col sm:items-center"
+          className="flex gap-[30px] md:gap-6 sm:flex-col sm:items-center"
         >
           <Image
             height={197}
@@ -56,7 +56,7 @@ export default function UserProfile() {
           />
           <div
             data-tid="userData"
-            className="flex flex-col gap-[30px] sm:gap-[20px]"
+            className="flex flex-col gap-[30px] md:gap-[37px] sm:gap-[20px]"
           >
             <h3 className="text-[32px] sm:text-[26px] font-medium leading-[35px]">
               {email?.split("@")[0]}
@@ -64,7 +64,7 @@ export default function UserProfile() {
             <div className="text-[18px] font-normal leading-[19px]">
               Логин: {email}
             </div>
-            <div className="w-[394px] sm:w-[283px] flex gap-[10px] sm:flex-col sm:items-center">
+            <div className="w-[394px] sm:w-[283px] md:w-[350px] flex gap-[10px] sm:flex-col sm:items-center">
               <Button
                 onClick={handleChangePassword}
                 className="w-[192px] sm:h-[50px] sm:w-[283px]"

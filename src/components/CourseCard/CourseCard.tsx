@@ -39,10 +39,10 @@ export default function CourseCard({
 
   return (
     <div
-      className="w-[360px] sm:w-[343px] rounded-[30px] shadow-blocks bg-white-base cursor-pointer"
+      className="w-[360px] sm:w-[343px] md:w-[310px] rounded-[30px] shadow-blocks bg-white-base cursor-pointer"
       onClick={handleCoursePageOpen}
     >
-      <div className="rounded-[30px] overflow-hidden w-[360px] sm:w-[343px] h-[325px] relative">
+      <div className="rounded-[30px] overflow-hidden w-[360px] sm:w-[343px] md:w-[310px] h-[325px] md:h-[310px] relative">
         <Image
           src={`/img/theme_${courseData.nameEN}.svg`}
           alt={courseData.nameRU}
@@ -53,14 +53,14 @@ export default function CourseCard({
         <PickCourseBtn isPicked={isPicked} courseID={courseData._id}/>
       </div>
 
-      <div className="mx-[30px] mt-[25px] mb-[15px]">
+      <div className="mx-8 md:mx-4 mt-6 md:mt-4 mb-4 md:mb-4">
 
-        <h3 className="text-[32px] leading-[35px] mb-[20px] font-medium">
+        <h3 className="text-[32px] md:text-[26px] leading-9 mb-5 md:mb-4 font-medium">
           {courseData.nameRU}
         </h3>
 
-        <div className="flex start gap-[6px] flex-wrap mb-[20px]">
-          <div className="rounded-[50px] flex p-[10px] gap-[6px] bg-gray-light">
+        <div className="flex start gap-[6px] flex-wrap mb-5">
+          <div className="rounded-large flex p-2.5 gap-[6px] bg-gray-light">
             <Image
               src="img/icon/calendar.svg"
               width={18}
@@ -69,13 +69,13 @@ export default function CourseCard({
             />
             <p className="text-[16px] font-normal leading-[17.6px]">25 дней</p>
           </div>
-          <div className="rounded-[50px] flex p-[10px] gap-[6px] bg-gray-light">
+          <div className="rounded-large flex p-2.5 gap-[6px] bg-gray-light">
             <Image src="img/icon/time.svg" width={18} height={18} alt="time" />
             <p className="text-[16px] font-normal leading-[17.6px]">
               20-50 мин/день
             </p>
           </div>
-          <div className="rounded-[50px] flex p-[10px] gap-[6px] bg-gray-light">
+          <div className="rounded-large flex p-2.5 gap-[6px] bg-gray-light">
             <Image
               src={`/img/icon/order_${courseData.order}.svg`}
               alt={`order_${courseData.order}.svg`}
@@ -92,7 +92,7 @@ export default function CourseCard({
           <>
             {" "}
             {/* Написать логику получения данных о проценте выполнении */}
-            <div className="mb-[40px]">
+            <div className="mb-10">
               <p>{`Прогресс ${completionPercentage}%`}</p>
               <ProgressBar completionPercentage={completionPercentage} />
             </div>

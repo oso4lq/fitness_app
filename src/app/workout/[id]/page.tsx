@@ -51,20 +51,20 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
         <div>
           <h1
             data-tid="titleCourseName"
-            className="mt-10 text-6xl sm:mx-4 sm:text-[26px] font-medium leading-none"
+            className="mt-10 sm:mx-4 md:mx-4 text-6xl sm:text-[26px] md:text-[32px] font-medium leading-none"
           >
             {nameCourse}
           </h1>
           <p
             data-tid="workoutName"
-            className="mt-6 sm:mt-[10px] sm:mx-4 text-4xl sm:text-[20px] font-normal leading-snug"
+            className="mt-6 sm:mt-[10px] sm:mx-4 md:mx-4 text-4xl sm:text-xl md:text-xl font-normal leading-snug"
           >
             {workoutData.name}
           </p>
 
           <div
             data-tid="videoContainer"
-            className="relative mt-10 sm:mt-6 sm:mx-4 w-full sm:w-auto overflow-hidden aspect-w-16 aspect-h-9 rounded"
+            className="relative mt-10 sm:mt-6 md:mt-6 sm:mx-4 md:mx-4 w-full sm:w-auto md:w-auto overflow-hidden aspect-w-16 aspect-h-9 rounded"
           >
             <iframe
               data-tid="video"
@@ -78,11 +78,11 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
           {workoutData.exercises ? (
             <div
               data-tid="exercisesBlock"
-              className="mt-10 sm:mt-6 mb-[60px] sm:mx-4 rounded bg-white-base p-10 sm:p-[30px] shadow-blocks"
+              className="mt-10 sm:mt-6 md:mt-6 mb-[60px] sm:mx-4 md:mx-4 rounded bg-white-base p-10 sm:p-7 md:p-7 shadow-blocks"
             >
               <h2
                 data-tid="titleExercises"
-                className="text-[35px] font-normal leading-snug"
+                className="text-[35px] md:text-2xl font-normal leading-snug"
               >
                 {`Упражнения тренировки ${indexWorkout}`}
               </h2>
@@ -105,11 +105,11 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                     <div
                       key={index}
                       data-tid="wrapperExercise"
-                      className="w-[320px]"
+                      className="w-[320px] md:w-[250px]"
                     >
                       <p
                         data-tid="nameExercise"
-                        className="text-lg font-normal leading-snug"
+                        className="text-lg md:text-base font-normal leading-snug"
                       >
                         {nameExerciseUpgrate}
                       </p>
@@ -121,7 +121,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 })}
               </div>
 
-              <div className="w-[320px] sm:w-[283px]">
+              <div className="w-[320px] sm:w-[283px] md:w-[250px]">
                 <Button onClick={onSaveClick}>Заполнить свой прогресс</Button>
               </div>
             </div>

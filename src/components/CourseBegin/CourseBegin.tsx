@@ -39,13 +39,13 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
       <Image
         width={482}
         height={455}
-        className="hidden md:block w-[375px] h-[455px] object-none right-[-1] top-[-250px] absolute z-10"
+        className="hidden lg:block w-[375px] md:w-[482px] h-[455px] object-none right-[-1] top-[-250px] absolute z-10"
         src="/img/runner_mini.svg"
         alt="runner"
       />
-      <div className="bg-white-base mt-[102px] sm:mt-[156px] mb-[100px] sm:mx-4 p-[30px] rounded-[30px] relative shadow-blocks flex z-30">
-        <div className="w-[437px]">
-          <h1 className="mb-[28px] text-black-base text-[60px] sm:text-[35px] font-medium leading-[60px] sm:leading-9">
+      <div className="bg-white-base mt-[102px] sm:mt-40 md:mt-40 mb-24 sm:mx-4 md:mx-4 p-8 rounded relative shadow-blocks flex z-30">
+        <div className="w-[437px] md:w-auto">
+          <h1 className="mb-7 text-black-base text-6xl sm:text-4xl md:text-4xl font-medium leading-[60px] sm:leading-9">
             Начните путь к новому телу
           </h1>
 
@@ -74,7 +74,7 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
         <Image
           width={738}
           height={708}
-          className="block md:hidden w-[738px] h-[588px] bottom-[30px] right-[-10px] z-30 -rotate-3 absolute object-none object-left-top"
+          className="block lg:hidden w-[738px] h-[588px] bottom-8 right-[-10px] z-30 -rotate-3 absolute object-none object-left-top"
           src="/img/runner.svg"
           alt="runner"
         />

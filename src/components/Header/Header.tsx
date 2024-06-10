@@ -42,7 +42,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex justify-between sm:mx-4">
+    <div className="flex justify-between sm:mx-4 md:mx-4">
       <div className="sm:mb-[2px]">
         <Link href={"/"}>
           <Logo />

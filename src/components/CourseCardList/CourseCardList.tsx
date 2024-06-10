@@ -63,7 +63,7 @@ export default function CourseCardList() {
   const coursesForRender = isProfilePage ? pickedCourses : courses;
 
   return (
-    <div className="grid grid-cols-3 gap-[40px] sm:flex sm:items-center sm:flex-col">
+    <div className="grid grid-cols-3 gap-10 sm:flex sm:items-center sm:flex-col md:mx-4 md:grid-cols-2 md:gap-2.5">
       {coursesForRender.map((course: CoursType) => (
         <CourseCard
           key={course._id}
@@ -81,4 +81,4 @@ export default function CourseCardList() {
   );
 }
 
-// style={{ fontSize: "35px", margin: "10% 25%" }}
+
