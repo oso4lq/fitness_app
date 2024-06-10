@@ -15,7 +15,10 @@ export default function ProfilePage() {
 
   return (
     <PrivateRoute>
-      <div data-tid="pageWrap" className="py-[60px] sm:py-[40px] md:py-[40px]">
+      <div
+        data-tid="pageWrap"
+        className="mb-20 sm:mb-10 md:mb-10 pt-[60px] sm:py-10 md:py-10"
+      >
         <UserProfile />
         <h2
           data-tid="titleCourses"

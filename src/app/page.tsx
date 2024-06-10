@@ -13,7 +13,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="mb-20">
       <div className="mt-14 sm:mt-[40px] mb-12 sm:mb-[34px] h-[120px] sm:h-[105px] md:mx-4 flex">
         <div className="w-[872px] md:w-[620px] sm:w-[327px] sm:mx-4">
           <h1 className="text-5xl sm:text-3xl md:text-4xl font-medium sm:font-bold">
@@ -22,7 +22,9 @@ export default function Home() {
         </div>
         <div className="w-[288px] md:w-auto flex items-start sm:hidden md:pt-2">
           <div className="speech-bubble rounded-small bg-green-dark">
-            <h2 className="text-2xl md:text-xl mx-5 my-4">Измени своё тело за полгода!</h2>
+            <h2 className="text-2xl md:text-xl mx-5 my-4">
+              Измени своё тело за полгода!
+            </h2>
           </div>
         </div>
       </div>
@@ -38,20 +40,6 @@ export default function Home() {
           <span className="-mt-[4.5px] text-[15px] font-bold">↑</span>
         </Button>
       </div>
-
-      <div className="DEVBLOCK">
-        <p>блок на время разработки с кнопками на страницы</p>
-        <Link href={"/course/q02a6i"}>Course Page q02a6i</Link>
-        <Link href={"/profile/"}>Profile Page</Link>
-        <Link href={"/workout/17oz5f"}>Workout Page 17oz5f</Link>
-        <Link href={"/login/"}>Log in</Link>
-        <Link href={"/signup/"}>Sign up</Link>
-        <Link href={"/reset-pass-mail/"}>Reset mail</Link>
-        <Link href={"/reset-pass/"}>Reset password</Link>
-        <Link href={"/select-workout/"}>Select workout</Link>
-        <Link href={"/my-progress/"}>My Progress</Link>
-        <Link href={"/approval-result/"}>Approval result</Link>
-      </div>
-    </>
+    </div>
   );
 }
