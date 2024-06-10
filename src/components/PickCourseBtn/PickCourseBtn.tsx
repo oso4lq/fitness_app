@@ -34,7 +34,7 @@ export default function PickCourseBtn({
       const IDsCourses: string[] = await fetchPickedIDsCourses();
       dispatch(setPickedIDsCourses(IDsCourses));
     } else {
-      router.replace(Routes.Login);
+      router.push(Routes.Login);
     }
   };
 

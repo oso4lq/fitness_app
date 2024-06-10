@@ -53,7 +53,7 @@ export default function CourseCardList() {
     if (user) {
       fetchPickedCourses();
     }
-  }, [user, dispatch]);
+  }, [user, dispatch, setCourses]);
 
   const pickedCourses: CoursType[] = pickedIDsCourses.length
     ? courses.filter((course: CoursType) =>
