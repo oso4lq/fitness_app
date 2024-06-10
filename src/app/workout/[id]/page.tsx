@@ -96,15 +96,16 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                   data-tid="containerListExercises"
                   className="mt-5 mb-10 flex flex-wrap items-end gap-y-[20px] gap-x-[60px]"
                 >
-
-
-
                   {workoutData.exercises?.map((item, index) => {
-                    const currentProgress = currentExercisesQuantity[index] || 0; // заглушка для рендера, поменять логику на получение из инпута
-                    const completionPercentage = calculateCompletionPercentage(currentProgress, item.quantity);
+                    const currentProgress =
+                      currentExercisesQuantity[index] || 0;
+                    const completionPercentage = calculateCompletionPercentage(
+                      currentProgress,
+                      item.quantity
+                    );
                     const nameExerciseUpgrate: string = item.name.replace(
                       /\(\d+ повторений\)/,
-                      `${completionPercentage}%`
+                      `${(currentProgress / item.quantity) * 100}%`
                     );
 
                     return (
@@ -128,7 +129,11 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
                 </div>
 
                 <div className="w-[320px] sm:w-[283px]">
-                  <Button onClick={onSaveClick}>{currentExercisesQuantity.length > 0 ? "Обновить свой прогресс" : "Заполнить свой прогресс"}</Button>
+                  <Button onClick={onSaveClick}>
+                    {currentExercisesQuantity.length > 0
+                      ? "Обновить свой прогресс"
+                      : "Заполнить свой прогресс"}
+                  </Button>
                 </div>
               </>
             ) : (
