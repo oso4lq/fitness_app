@@ -56,7 +56,7 @@ export type CoursesStateType = {
   currentWorkoutData: null | Workout;
   currentWorkoutIndex: null | number;
   currentExercisesQuantity: number[];
-}
+};
 
 export type setCurrentWorkoutType = {
   data: null | Workout;
@@ -66,4 +66,8 @@ export type setCurrentWorkoutType = {
 export type setExerciseQuantityType = {
   index: number;
   quantity: number;
-}
+};
+
+export type SetWorkoutQuantityType = {
+  data: number[];
+};
