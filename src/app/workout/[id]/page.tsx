@@ -8,6 +8,7 @@ import { Button } from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
 import Routes from "@/routes";
 import { useAppSelector } from "@/hooks";
+import { calculateCompletionPercentage } from "@/lib/calculateCompletionPercentage";
 
 type WorkoutVideoPageProps = {
   params: { id: string };
@@ -25,6 +26,9 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
   );
 
   const [workoutData, setWorkoutData] = useState<Workout | null>(null);
+  const currentExercisesQuantity = useAppSelector(
+    (state) => state.usersCourses.currentExercisesQuantity
+  );
 
   useEffect(() => {
     const getWorkoutData = async () => {
@@ -39,7 +43,7 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
       }
     };
     getWorkoutData();
-  }, [workoutId]);
+  }, [workoutId, currentExercisesQuantity]);
 
   const onSaveClick = () => {
     router.push(Routes.MyProgress);
@@ -75,59 +79,64 @@ export default function WorkoutVideoPage({ params }: WorkoutVideoPageProps) {
             />
           </div>
 
-          {workoutData.exercises ? (
-            <div
-              data-tid="exercisesBlock"
-              className="mt-10 sm:mt-6 mb-[60px] sm:mx-4 rounded bg-white-base p-10 sm:p-[30px] shadow-blocks"
-            >
-              <h2
-                data-tid="titleExercises"
-                className="text-[35px] font-normal leading-snug"
-              >
-                {`Упражнения тренировки ${indexWorkout}`}
-              </h2>
+          <div
+            data-tid="exercisesBlock"
+            className="mt-10 sm:mt-6 mb-[60px] sm:mx-4 rounded bg-white-base p-10 sm:p-[30px] shadow-blocks"
+          >
+            {workoutData.exercises ? (
+              <>
+                <h2
+                  data-tid="titleExercises"
+                  className="text-[35px] font-normal leading-snug"
+                >
+                  {`Упражнения тренировки ${indexWorkout}`}
+                </h2>
 
-              <div
-                data-tid="containerListExercises"
-                className="mt-5 mb-10 flex flex-wrap items-end gap-y-[20px] gap-x-[60px]"
-              >
-                {workoutData.exercises?.map((item, index) => {
-                  const currentProgress = 5; // заглушка для рендера, поменять логику на получение из инпута
-                  const completionPercentage = Math.round(
-                    (currentProgress / item.quantity) * 100
-                  );
-                  const nameExerciseUpgrate: string = item.name.replace(
-                    /\(\d+ повторений\)/,
-                    `${completionPercentage}%`
-                  );
+                <div
+                  data-tid="containerListExercises"
+                  className="mt-5 mb-10 flex flex-wrap items-end gap-y-[20px] gap-x-[60px]"
+                >
 
-                  return (
-                    <div
-                      key={index}
-                      data-tid="wrapperExercise"
-                      className="w-[320px]"
-                    >
-                      <p
-                        data-tid="nameExercise"
-                        className="text-lg font-normal leading-snug"
+
+
+                  {workoutData.exercises?.map((item, index) => {
+                    const currentProgress = currentExercisesQuantity[index] || 0; // заглушка для рендера, поменять логику на получение из инпута
+                    const completionPercentage = calculateCompletionPercentage(currentProgress, item.quantity);
+                    const nameExerciseUpgrate: string = item.name.replace(
+                      /\(\d+ повторений\)/,
+                      `${completionPercentage}%`
+                    );
+
+                    return (
+                      <div
+                        key={index}
+                        data-tid="wrapperExercise"
+                        className="w-[320px]"
                       >
-                        {nameExerciseUpgrate}
-                      </p>
-                      <ProgressBar
-                        completionPercentage={completionPercentage}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+                        <p
+                          data-tid="nameExercise"
+                          className="text-lg font-normal leading-snug"
+                        >
+                          {nameExerciseUpgrate}
+                        </p>
+                        <ProgressBar
+                          completionPercentage={completionPercentage}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
 
-              <div className="w-[320px] sm:w-[283px]">
-                <Button onClick={onSaveClick}>Заполнить свой прогресс</Button>
+                <div className="w-[320px] sm:w-[283px]">
+                  <Button onClick={onSaveClick}>{currentExercisesQuantity.length > 0 ? "Обновить свой прогресс" : "Заполнить свой прогресс"}</Button>
+                </div>
+              </>
+            ) : (
+              <div className="text-[35px] my-[5%] mx-[15%]">
+                у тренировки нет обязательных упражнений
               </div>
-            </div>
-          ) : (
-            ""
-          )}
+            )}
+          </div>
         </div>
       ) : (
         <p>Workout is loading...</p>

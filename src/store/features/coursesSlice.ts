@@ -1,4 +1,4 @@
-import { CoursesStateType, CoursType, setCurrentWorkoutType } from "@/types/types";
+import { CoursesStateType, CoursType, setCurrentWorkoutType, setExerciseQuantityType } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: CoursesStateType = {
@@ -6,6 +6,7 @@ const initialState: CoursesStateType = {
   currentCourseData: null,
   currentWorkoutData: null,
   currentWorkoutIndex: null,
+  currentExercisesQuantity: [],
 };
 
 const coursesSlice = createSlice({
@@ -21,6 +22,11 @@ const coursesSlice = createSlice({
     setCurrentWorkoutData: (state, action: PayloadAction<setCurrentWorkoutType>) => {
       state.currentWorkoutData = action.payload.data;
       state.currentWorkoutIndex = (Number(action.payload.index) + 1);
+      state.currentExercisesQuantity = [];
+    },
+    setExerciseQuantity(state, action: PayloadAction<setExerciseQuantityType>) {
+      const { index, quantity } = action.payload;
+      state.currentExercisesQuantity[index] = quantity;
     },
   },
 });
@@ -29,5 +35,6 @@ export const {
   setPickedIDsCourses,
   setCurrentCourseData,
   setCurrentWorkoutData,
+  setExerciseQuantity,
 } = coursesSlice.actions;
 export const usersCoursesReducer = coursesSlice.reducer;
