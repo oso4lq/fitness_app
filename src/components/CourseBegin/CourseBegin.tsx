@@ -51,18 +51,12 @@ export default function CourseBegin({ courseData }: { courseData: CoursType }) {
             Начните путь к новому телу
           </h1>
 
-          {/* содержание напоминает description в курсе, но там строка произвольного текста, уточнить должен ли тут быть список?! */}
+          {/* содержание напоминает description в курсе, но там строка произвольного текста, а по макету маркированный список?! */}
           <ul
             data-tid="description-list"
             className="mb-[28px] list-inside space-y-3"
           >
-            {/* className="text-6 font-normal leading-[26.4px] text-black-base opacity-60" */}
             <p>{courseData.description}</p>
-            {/* <li className="list-item-grey">проработка всех групп мышц</li>
-          <li className="list-item-grey">тренировка суставов</li>
-          <li className="list-item-grey">улучшение циркуляции крови</li>
-          <li className="list-item-grey">упражнения заряжают бодростью</li>
-          <li className="list-item-grey">помогают противостоять стрессам</li> */}
           </ul>
 
           <Button onClick={handlePickCourse}>

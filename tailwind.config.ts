@@ -55,7 +55,7 @@ const config: Config = {
       xl: { max: "1400px" },
       lg: { max: "1200px" },
       md: { max: "660px" },
-      sm: { max: "375px" },
+      sm: { max: "530px" },
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
