@@ -2,7 +2,7 @@
 "use client";
 
 import CourseLayout from "@/app/course/layout";
-import CoursePage from "@/app/course/page";
+import Course from "@/components/Course/Course";
 import { CoursType } from "@/types/types";
 import { useEffect, useState } from "react";
 
@@ -37,7 +37,7 @@ const CourseDetailsPage = ({ params }: any) => {
 
   return (
     <CourseLayout>
-      <CoursePage courseData={courseData} />
+      <Course courseData={courseData} />
     </CourseLayout>
   );
 };
