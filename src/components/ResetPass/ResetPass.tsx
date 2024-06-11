@@ -37,7 +37,7 @@ export default function ResetPass({
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
-        <Logo></Logo>
+        <Logo/>
       </div>
       <form>
         <div className="mb-8">
@@ -49,7 +49,7 @@ export default function ResetPass({
               placeholder="Старый пароль"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
-            ></Input>
+            />
           )}
           <Input
             className="mb-2.5"
@@ -58,14 +58,14 @@ export default function ResetPass({
             placeholder="Новый пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Input>
+          />
           <Input
             name="password"
             type="password"
             placeholder="Повторите пароль"
             value={repeatPassword}
             onChange={(e) => setRepeatPassword(e.target.value)}
-          ></Input>
+          />
         </div>
         <div>
           <Button onClick={handlePasswordChange}>Подтвердить</Button>

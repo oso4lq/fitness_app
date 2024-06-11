@@ -4,7 +4,7 @@ import ResetPass from "@/components/ResetPass/ResetPass";
 export default function Page() {
   return (
     <Modal>
-      <ResetPass></ResetPass>
+      <ResetPass />
     </Modal>
   );
 }

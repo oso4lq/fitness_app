@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MVP приложения для занятий фитнесом "SkyFitnessPro"
 
-## Getting Started
+В этом репозитории реализован MVP приложения для занятий фитнесом "SkyFitnessPro", [макет в Figma](https://www.figma.com/design/2Vhk2Zdii1eM7rA0fWQExv/SkyFitnessPro?node-id=0-1&t=xqutd2kUutsYlO27-0)
 
-First, run the development server:
+## Разработка
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Приложение разработано с помощью React и Next.js.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Как разрабатывать
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Установите зависимости командой `npm i`
+- Запустите dev сервер `npm run dev`
+- Откройте адрес в браузере
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Стек и инструменты
 
-## Learn More
+TypeScript - базовый инструмент для реализации приложения.<br>
+Для стилизации проекта должна быть использована библиотека Tailwind CSS.<br>
+В качестве базы данных и инструмента для аутентификации пользователей Google Firebase.<br>
+Конфигурация eslint - стандартная рекомендованная.<br>
+Глобальное состояние добавлено в приложение с помощью Redux Toolkit.<br>
+Для деплойя использован Netlify.<br>
 
-To learn more about Next.js, take a look at the following resources:
+### Пользовательские сценарии
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Страница курсов (главная).
+На странице отображаются все курсы, имеющиеся в базе данных. Курсы отображаются вне зависимости от статуса авторизации пользователя. При нажатии на кнопку «Наверх» происходит скролл в самое начало страницы.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Страница авторизации/регистрации.
+Пользователь имеет возможность Войти в приложение или Зарегистрироваться. Если данные были введены некорректно, пользователю выводится сообщение об ошибке в соответствии с макетом. 
 
-## Deploy on Vercel
+- Страница профиля пользователя.
+На странице «Мой профиль» пользователь имеет возможность просматривать и редактировать свои данные (сменить пароль). Также пользователь может ознакомиться с приобретенными курсами, перейти на страницу конкретного курса и начать тренироваться по курсу. В курсе несколько тренировок, пользователь выбирает к какой хочет приступить (перейти на страницу тренировки) кликом по позиции в списке вызываемого модальном окне.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Страница тренировки.
+По клику на выбранную тренировку в своем профиле пользователь попадает на страницу, где может открывать материалы урока (видеоролики на ютубе). У тренировки может быть определенный набор упражнений, и пользователь имеет возможность заполнить свой прогресс по ним - внести число фактически выполненных подходов.

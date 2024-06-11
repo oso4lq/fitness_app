@@ -3,7 +3,6 @@
 import { Button } from "@/components/Button/Button";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
 import Routes from "@/routes";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {

@@ -21,7 +21,8 @@ export default function CourseCardList() {
 
   const dispatch = useAppDispatch();
   const pathname = usePathname();
-  const isProfilePage = pathname === Routes.Profile || pathname === Routes.SelectWorkout;
+  const isProfilePage =
+    pathname === Routes.Profile || pathname === Routes.SelectWorkout || pathname === Routes.ResetPass;
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -63,22 +64,22 @@ export default function CourseCardList() {
   const coursesForRender = isProfilePage ? pickedCourses : courses;
 
   return (
-    <div className="grid grid-cols-3 gap-10 sm:flex sm:items-center sm:flex-col md:mx-4 md:grid-cols-2 md:gap-2.5">
-      {coursesForRender.map((course: CoursType) => (
-        <CourseCard
-          key={course._id}
-          courseData={course}
-          isPicked={pickedIDsCourses.includes(course._id)}
-          isProfilePage={isProfilePage}
-        />
-      ))}
+    <>
+      <div className="grid grid-cols-3 gap-10 sm:flex sm:items-center sm:flex-col md:mx-4 md:grid-cols-2 md:gap-2.5">
+        {coursesForRender.map((course: CoursType) => (
+          <CourseCard
+            key={course._id}
+            courseData={course}
+            isPicked={pickedIDsCourses.includes(course._id)}
+            isProfilePage={isProfilePage}
+          />
+        ))}
+      </div>
       {isProfilePage && !coursesForRender.length && (
-        <div className="text-[35px] my-[5%] mx-[25%]">
+        <div className="text-[35px] text-center my-[2%] mx-[15%] md:mx-[5%] md:text-[32px] sm:my-4 sm:text-[26px]">
           у вас нет выбранных курсов
         </div>
       )}
-    </div>
+    </>
   );
 }
-
-

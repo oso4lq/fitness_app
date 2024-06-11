@@ -16,7 +16,6 @@ export default function SelectWorkout() {
     (state) => state.usersCourses.currentCourseData
   )?.workouts;
   const [workouts, setWorkouts] = useState<Workout[]>([]);
-  // const [isModalVisible, setIsModalVisible] = useState(true); // Состояние для управления видимостью модального окна
   const router = useRouter();
 
   useEffect(() => {
