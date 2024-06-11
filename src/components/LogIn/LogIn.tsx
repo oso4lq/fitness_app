@@ -34,7 +34,7 @@ export default function LogIn() {
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
-        <Logo></Logo>
+        <Logo/>
       </div>
       <form>
         <div className="mb-8">
@@ -45,7 +45,7 @@ export default function LogIn() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          ></Input>
+          />
           <Input
             className={isCredentialsInvalid ? "border-error" : ""}
             name="password"
@@ -53,7 +53,7 @@ export default function LogIn() {
             placeholder="Пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Input>
+          />
         </div>
         {isCredentialsInvalid && (
           <div className="text-error text-sm mb-8 text-center">

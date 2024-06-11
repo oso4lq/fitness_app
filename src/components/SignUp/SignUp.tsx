@@ -41,7 +41,7 @@ export default function SignUp() {
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
-        <Logo></Logo>
+        <Logo />
       </div>
       <form>
         <div className="mb-8">
@@ -52,7 +52,7 @@ export default function SignUp() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          ></Input>
+          />
           <Input
             className="mb-2.5"
             name="password"
@@ -60,14 +60,14 @@ export default function SignUp() {
             placeholder="Пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Input>
+          />
           <Input
             name="confirmPassword"
             type="password"
             placeholder="Повторите пароль"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Input>
+          />
         </div>
         {isUserExists && (
           <div className="text-error text-sm mb-8 text-center">

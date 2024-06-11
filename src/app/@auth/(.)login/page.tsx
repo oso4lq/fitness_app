@@ -4,7 +4,7 @@ import Modal from "@/components/Modal/Modal";
 export default function Page() {
   return (
     <Modal>
-      <LogIn></LogIn>
+      <LogIn />
     </Modal>
   );
 }

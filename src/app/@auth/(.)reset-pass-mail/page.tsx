@@ -10,7 +10,7 @@ export default function Page() {
 
   return (
     <Modal>
-      <ResetPassMail email={email}></ResetPassMail>
+      <ResetPassMail email={email} />
     </Modal>
   );
 }

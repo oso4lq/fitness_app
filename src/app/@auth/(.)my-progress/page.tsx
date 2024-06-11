@@ -4,7 +4,7 @@ import MyProgress from "@/components/MyProgress/MyProgress";
 export default function Page() {
   return (
     <Modal>
-      <MyProgress></MyProgress>
+      <MyProgress />
     </Modal>
   );
 }

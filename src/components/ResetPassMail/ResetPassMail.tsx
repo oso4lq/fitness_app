@@ -1,12 +1,10 @@
-"use client";
-
 import Logo from "../Logo/Logo";
 
 export default function ResetPassMail({ email}: {email: string | null}) {
   return (
     <>
       <div className="mb-12 flex justify-center items-center">
-        <Logo></Logo>
+        <Logo/>
       </div>
       <form>
         <h6 className="leading-tight text-center">
