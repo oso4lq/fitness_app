@@ -1,6 +1,10 @@
 // src/lib/firebaseConfig.js
 import { initializeApp } from "firebase/app";
-import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence,
+} from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
@@ -11,7 +15,8 @@ const firebaseConfig = {
   messagingSenderId: "278924056979",
   appId: "1:278924056979:web:8e5708e8a00e479978b066",
   measurementId: "G-MYXJ9KCFR1",
-  databaseURL: "https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app", // Realtime Database URL
+  databaseURL:
+    "https://fitness-project-ind15-default-rtdb.europe-west1.firebasedatabase.app", // Realtime Database URL
 };
 
 // Initialize Firebase
@@ -20,8 +25,8 @@ const auth = getAuth(app);
 const db = getDatabase(app);
 
 // Set persistence
-setPersistence(auth, browserLocalPersistence).catch((error) => {
-  console.error("Failed to set persistence:", error);
-});
+// setPersistence(auth, browserLocalPersistence).catch((error) => {
+//   console.error("Failed to set persistence:", error);
+// });
 
 export { app, auth, db };

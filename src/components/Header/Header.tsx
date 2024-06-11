@@ -9,18 +9,27 @@ import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import { useAppDispatch, useAppSelector, useOutsideClick } from "@/hooks";
 import Routes from "@/routes";
+import {
+  setCurrentCourseData,
+  setCurrentWorkoutData,
+  setPickedIDsCourses,
+} from "@/store/features/coursesSlice";
 
 export default function Header() {
-  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
-  const { name, email } = useAppSelector((state) => state.user);
+  const { isAuthenticated, email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
 
-  const handleLogout = async () => {
-    await dispatch(logOutUser());
-    router.replace("/");
+  const handleLogout = () => {
+    dispatch(logOutUser()).then(() => {
+      setIsOpen(false);
+      dispatch(setPickedIDsCourses([]));
+      dispatch(setCurrentCourseData(null));
+      dispatch(setCurrentWorkoutData({ data: null, index: null }));
+      router.replace("/");
+    });
   };
 
   const onLoginClick = () => {
@@ -28,39 +37,37 @@ export default function Header() {
   };
 
   const onProfileClick = () => {
-    router.push(Routes.Profile);
     setIsOpen(false);
+    router.push(Routes.Profile);
   };
 
   return (
-    <div className="flex justify-between">
-      <div>
-        <div>
-          <Link href={"/"}>
-            <Logo />
-            <div className="text-lg opacity-60">
-              Онлайн-тренировки для занятий дома
-            </div>
-          </Link>
-        </div>
+    <div className="flex justify-between sm:mx-4 md:mx-4">
+      <div className="sm:mb-[2px]">
+        <Link href={"/"}>
+          <Logo />
+          <div className="text-lg opacity-60 sm:hidden">
+            Онлайн-тренировки для занятий дома
+          </div>
+        </Link>
       </div>
       <div className="flex items-center">
         {isAuthenticated ? (
           <div className="flex">
             <Image
-              className="w-12 h-12"
+              className="w-12 h-12 sm:w-[36px] sm:h-[36px]"
               src="/img/icon/user.svg"
               alt="user_img"
               width={48}
               height={48}
             />
             <div
-              className="flex items-center ml-4 cursor-pointer relative"
+              className="flex items-center ml-4 sm:ml-0 cursor-pointer relative"
               onClick={() => {
                 setIsOpen((val) => !val);
               }}
             >
-              <div>{name}</div>
+              <div className="sm:hidden">{email?.split("@")[0]}</div>
               <Image
                 className="w-3 h-2 ml-3"
                 src="/img/icon/button_user.svg"
@@ -71,10 +78,12 @@ export default function Header() {
               {isOpen && (
                 <div
                   ref={ref}
-                  className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] right-0"
+                  className="modal w-[266px] rounded p-[30px] bg-white-base absolute z-10 top-[74px] sm:top-36 right-0 sm:right-9 sm:border-2  sm:border-gray-dark"
                 >
                   <div className="mb-8">
-                    <div className="text-lg text-center">{name}</div>
+                    <div className="text-lg text-center">
+                      {email?.split("@")[0]}
+                    </div>
                     <div className="text-lg text-center opacity-60">
                       {email}
                     </div>
@@ -90,7 +99,11 @@ export default function Header() {
             </div>
           </div>
         ) : (
-          <Button width="102px" onClick={onLoginClick}>
+          <Button
+            width="102px"
+            onClick={onLoginClick}
+            className="sm:h-[36px] sm:w-[83px]"
+          >
             Войти
           </Button>
         )}

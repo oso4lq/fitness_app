@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
@@ -30,10 +30,13 @@ export default function SignUp() {
     // }
 
     dispatch(signUpUser({ email, password }));
+  };
+
+  useEffect(() => {
     if (isAuthenticated) {
       router.back();
     }
-  };
+  }, [isAuthenticated, router]);
 
   return (
     <>
@@ -82,7 +85,7 @@ export default function SignUp() {
             className="mt-3"
             onClick={() => {
               console.log("Navigate to Login Clicked"); // debug
-              router.push(Routes.Login);
+              router.replace(Routes.Login);
             }}
           >
             Войти

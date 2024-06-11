@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Input from "../Input/Input";
@@ -23,10 +23,13 @@ export default function LogIn() {
   const handleLogIn = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(logInUser({ email, password }));
+  };
+
+  useEffect(() => {
     if (isAuthenticated) {
       router.back();
     }
-  };
+  }, [isAuthenticated, router]);
 
   return (
     <>
@@ -56,7 +59,7 @@ export default function LogIn() {
           <div className="text-error text-sm mb-8 text-center">
             Пароль введен неверно, попробуйте еще раз.&nbsp;
             <Link
-              href={"/reset-pass-mail/"}
+              href={"/reset-pass-mail/?email=" + email}
               className="underline decoration-error"
             >
               Восстановить пароль?
@@ -75,7 +78,7 @@ export default function LogIn() {
             onClick={() => {
               console.log("Navigate to SignUp Clicked"); // debug
 
-              router.push(Routes.SignUp);
+              router.replace(Routes.SignUp);
             }}
           >
             Зарегистрироваться

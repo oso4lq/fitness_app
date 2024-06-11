@@ -3,59 +3,40 @@
 import PrivateRoute from "@/components/PrivateRoute";
 import UserProfile from "@/components/UserProfile/UserProfile";
 import CourseCardList from "@/components/CourseCardList/CourseCardList";
-import { useEffect, useState } from "react";
-import { useAppSelector } from "@/hooks";
-import { getDatabase, ref, get } from "firebase/database";
-import { db } from "@/lib/firebaseConfig";
+import { Button } from "@/components/Button/Button";
+import { useRouter } from "next/navigation";
+import Routes from "@/routes";
 
 export default function ProfilePage() {
-  const [pickedCourses, setPickedCourses] = useState([]);
-  const [courses, setCourses] = useState([]);
-  const user = useAppSelector((state) => state.user.user);
-
-  useEffect(() => {
-    const fetchPickedCourses = async () => {
-      if (user) {
-        const userRef = ref(db, `users/${user.uid}`);
-        const snapshot = await get(userRef);
-        if (snapshot.exists()) {
-          const data = snapshot.val();
-          setPickedCourses(data.pickedCourses || []);
-        } else {
-          console.error("No data available for user");
-        }
-      }
-    };
-
-    const fetchCourses = async () => {
-      const dbRef = ref(db, "courses");
-      const snapshot = await get(dbRef);
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        setCourses(Object.values(data));
-      } else {
-        console.error("No data available");
-      }
-    };
-
-    fetchPickedCourses();
-    fetchCourses();
-  }, [user]);
-
-  //@ts-ignore
-  const pickedCoursesData = courses.filter(course => pickedCourses.includes(course._id));
+  const router = useRouter();
+  const onTopClick = () => {
+    router.push(Routes.Profile);
+  };
 
   return (
     <PrivateRoute>
-      <div data-tid="pageWrap" className="py-[60px]">
+      <div
+        data-tid="pageWrap"
+        className="mb-20 sm:mb-10 md:mb-10 pt-[60px] sm:py-10 md:py-10"
+      >
         <UserProfile />
         <h2
           data-tid="titleCourses"
-          className="text-[40px] font-semibold leading-[44px] mt-[60px] mb-[40px]"
+          className="mt-[60px] mb-[40px] sm:my-6 md:my-6 sm:mx-4 md:mx-4 text-[40px] sm:text-[26px] md:text-[32px] font-semibold leading-[44px]"
         >
           Мои курсы
         </h2>
-        <CourseCardList courses={pickedCoursesData} pickedCourses={pickedCourses} />
+        <CourseCardList />
+        <div className="hidden sm:mr-4 sm:flex md:flex sm:justify-end md:justify-center">
+          <Button
+            className="mt-[34px] flex justify-center items-center content-end gap-[4px]"
+            width="126px"
+            onClick={onTopClick}
+          >
+            Наверх
+            <span className="-mt-[4.5px] text-[15px] font-bold">↑</span>
+          </Button>
+        </div>
       </div>
     </PrivateRoute>
   );

@@ -4,9 +4,11 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  User,
   AuthErrorCodes,
   createUserWithEmailAndPassword,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 import { AppDispatch } from "../store";
 import { FirebaseError } from "firebase/app";
@@ -24,18 +26,21 @@ interface UserState {
   loading: boolean;
   name: string | null;
   email: string | null;
+  uid: string | null;
 }
 
 interface SetUserPayload {
   isAuthenticated: boolean;
   name: string | null;
   email: string | null;
+  uid: string | null;
 }
 
 const emptyAuth: SetUserPayload = {
   isAuthenticated: false,
   name: null,
   email: null,
+  uid: null,
 };
 
 const initialState: UserState = {
@@ -46,6 +51,7 @@ const initialState: UserState = {
   genericError: null,
   name: null,
   email: null,
+  uid: null,
 };
 
 export const logInUser = createAsyncThunk(
@@ -64,6 +70,7 @@ export const logInUser = createAsyncThunk(
         isAuthenticated: true,
         name: userCredential.user.displayName,
         email: userCredential.user.email,
+        uid: userCredential.user.uid,
       };
     } catch (error: any) {
       if (error instanceof FirebaseError) {
@@ -91,6 +98,7 @@ export const signUpUser = createAsyncThunk(
         isAuthenticated: true,
         name: userCredential.user.displayName,
         email: userCredential.user.email,
+        uid: userCredential.user.uid,
       };
     } catch (error: any) {
       if (error instanceof FirebaseError) {
@@ -113,6 +121,34 @@ export const logOutUser = createAsyncThunk(
   }
 );
 
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (
+    { oldPassword, password }: { oldPassword: string; password: string },
+    { rejectWithValue }
+  ) => {
+    const user = auth.currentUser!;
+    try {
+      await updatePassword(user, password);
+      return;
+    } catch (error: any) {
+      if (error instanceof FirebaseError) {
+        if (error.code === AuthErrorCodes.CREDENTIAL_TOO_OLD_LOGIN_AGAIN) {
+          const credential = EmailAuthProvider.credential(
+            user.email!,
+            oldPassword
+          );
+          await reauthenticateWithCredential(user, credential);
+          await updatePassword(user, password);
+        }
+        return rejectWithValue(errorFromFirebase(error));
+      } else {
+        return rejectWithValue(errorFromGeneric(error));
+      }
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -123,6 +159,7 @@ const userSlice = createSlice({
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.isAuthenticated = action.payload.isAuthenticated;
+        state.uid = action.payload.uid;
       }
     },
   },
@@ -140,6 +177,7 @@ const userSlice = createSlice({
           state.isAuthenticated = true;
           state.name = action.payload.name;
           state.email = action.payload.email;
+          state.uid = action.payload.uid;
         }
       )
       //@ts-ignore
@@ -167,6 +205,7 @@ const userSlice = createSlice({
           state.isAuthenticated = true;
           state.name = action.payload.name;
           state.email = action.payload.email;
+          state.uid = action.payload.uid;
         }
       )
       //@ts-ignore
@@ -188,6 +227,7 @@ const userSlice = createSlice({
         state.email = null;
         state.genericError = null;
         state.isCredentialsInvalid = false;
+        state.uid = null;
       })
       //@ts-ignore
       .addCase(
@@ -196,7 +236,11 @@ const userSlice = createSlice({
           console.log("Generic error while login", action.payload);
           state.genericError = action.payload;
         }
-      );
+      )
+      .addCase(changePassword.rejected, (state, action) => {
+        console.log(action.error);
+        console.log(action);
+      });
   },
 });
 
@@ -210,6 +254,7 @@ export const initializeAuthListener = () => (dispatch: AppDispatch) => {
           isAuthenticated: true,
           name: user.displayName,
           email: user.email,
+          uid: user.uid,
         })
       );
     } else {

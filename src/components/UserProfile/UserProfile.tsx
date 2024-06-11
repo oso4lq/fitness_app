@@ -1,90 +1,83 @@
 // src/components/UserProfile/UserProfile.tsx
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { updatePassword } from "firebase/auth";
-import { useAppSelector, useAppDispatch } from "@/hooks";
-import { auth } from "@/lib/firebaseConfig";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import Image from "next/image";
 import { Button, ButtonAdditional } from "../Button/Button";
 import Routes from "@/routes";
 import { logOutUser } from "@/store/features/userSlice";
+import {
+  setCurrentCourseData,
+  setCurrentWorkoutData,
+  setPickedIDsCourses,
+} from "@/store/features/coursesSlice";
 
 export default function UserProfile() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const currentUser = auth.currentUser;
-  const [newPassword, setNewPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const { email } = useAppSelector((state) => state.user);
 
-  const handleChangePassword = async () => {
-    if (!currentUser) {
-      setError("User not authenticated");
-      return;
-    }
-
-    try {
-      await updatePassword(currentUser, newPassword);
-      setNewPassword("");
-      alert("Password updated successfully");
-    } catch (err) {
-      setError((err as Error).message);
-    }
+  const handleChangePassword = () => {
+    router.push(Routes.ResetPass);
   };
 
-  const handleLogout = async () => {
-    try {
-      await dispatch(logOutUser());
+  const handleLogout = () => {
+    dispatch(logOutUser()).then(() => {
+      dispatch(setPickedIDsCourses([]));
+      dispatch(setCurrentCourseData(null));
+      dispatch(setCurrentWorkoutData({ data: null, index: null }));
       router.push(Routes.Main);
-    } catch (err) {
-      setError((err as Error).message);
-    }
+    });
   };
 
   return (
     <>
       <h2
         data-tid="titleProfile"
-        className="mt-50 text-[40px] font-semibold leading-[44px]"
+        className="text-[40px] sm:text-[26px] md:text-[32px] sm:mx-4 md:mx-4 font-semibold leading-[44px]"
       >
         Профиль
       </h2>
       <div
         data-tid="profileUserInfoBlock"
-        className="bg-white-base mt-10 h-[257px] p-[30px] rounded-[30px] shadow-blocks"
+        className="bg-white-base mt-10 sm:mt-6 md:mt-6 sm:mx-4 md:mx-4 h-[257px] sm:h-auto p-[30px] rounded-[30px] shadow-blocks"
       >
-        <div data-tid="contentBlock" className="flex gap-[30px] flex-wrap">
+        <div
+          data-tid="contentBlock"
+          className="flex gap-[30px] md:gap-6 sm:flex-col sm:items-center"
+        >
           <Image
             height={197}
             width={197}
             alt="photo_user"
-            src={currentUser ? "/img/icon/USER_PHOTO.svg" : "/img/icon/photo_user.svg"}
+            src="/img/icon/photo_user.svg"
+            className="sm:w-[141px] sm:h-[141px]"
           />
-          <div data-tid="userData" className="flex flex-col gap-[30px]">
-            <h3 className="text-[32px] font-medium leading-[35px]">{currentUser?.email}</h3>
-            <div className="">
-              <p className="mb-[10px] text-[18px] font-normal leading-[19px]">
-                Логин: {currentUser?.email}
-              </p>
-              <div className="mb-[10px] text-[18px] font-normal leading-[19px]">
-                <input
-                  type="password"
-                  placeholder="New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </div>
+          <div
+            data-tid="userData"
+            className="flex flex-col gap-[30px] md:gap-[37px] sm:gap-[20px]"
+          >
+            <h3 className="text-[32px] sm:text-[26px] font-medium leading-[35px]">
+              {email?.split("@")[0]}
+            </h3>
+            <div className="text-[18px] font-normal leading-[19px]">
+              Логин: {email}
             </div>
-            <div className="w-[394px] flex flex-wrap gap-[10px]">
-              <Button width="192px" onClick={handleChangePassword}>
+            <div className="w-[394px] sm:w-[283px] md:w-[350px] flex gap-[10px] sm:flex-col sm:items-center">
+              <Button
+                onClick={handleChangePassword}
+                className="w-[192px] sm:h-[50px] sm:w-[283px]"
+              >
                 Изменить пароль
               </Button>
-              <ButtonAdditional width="192px" onClick={handleLogout}>
+              <ButtonAdditional
+                onClick={handleLogout}
+                className="w-[192px] sm:h-[50px] sm:w-[283px]"
+              >
                 Выйти
               </ButtonAdditional>
             </div>
-            {error && <p className="text-red-500">{error}</p>}
           </div>
         </div>
       </div>

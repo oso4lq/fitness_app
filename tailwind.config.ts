@@ -15,6 +15,9 @@ const config: Config = {
         "dark-gradient":
           "linear-gradient(115.81deg, #151720 34.98%, #1E212E 91.5%)",
       },
+      cursor: {
+        customCursor: "url('/img/customCursor.png'), auto",
+      },
     },
     borderRadius: {
       DEFAULT: "30px",
@@ -47,6 +50,12 @@ const config: Config = {
     },
     boxShadow: {
       blocks: "0px 4px 67px -12px #00000021",
+    },
+    screens: {
+      xl: { max: "1400px" },
+      lg: { max: "1200px" },
+      md: { max: "660px" },
+      sm: { max: "375px" },
     },
   },
   plugins: [require("@tailwindcss/aspect-ratio")],
