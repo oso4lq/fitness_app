@@ -1,13 +1,7 @@
-import styles from "./page.module.css";
-
 export default function CourseLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <div className={styles.wrapper}>
-            {children}
-        </div>
-    );
+  return <div>{children}</div>;
 }

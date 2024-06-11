@@ -1,5 +1,5 @@
 import ResetPassMail from "@/components/ResetPassMail/ResetPassMail";
 
 export default function ResetPassMailPage() {
-  return <ResetPassMail />;
+  return <ResetPassMail email="test@example.com" />;
 }
